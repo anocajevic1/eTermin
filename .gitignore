@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs
+/DijagramiKomunikacija
+/DijagramiSekvenci
+/ERD
+/eTermin/.vs/config
+/eTermin/.vs/eTermin/v15/Server/sqlite3
+/eTermin/.vs/eTermin/v15
+/eTermin/bin/Debug/netcoreapp2.2
+/eTermin/obj/Debug/netcoreapp2.2
+/eTermin/eTermin.csproj.user
