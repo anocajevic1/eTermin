@@ -17,5 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Models\:Users:silegrb:Projects:ooad-2018-2019:Grupa4-FFA:eTermin:Models:Subscription.cs" />
+    <Compile Remove="Models\WTFClass.cs" />
   </ItemGroup>
 </Project>
