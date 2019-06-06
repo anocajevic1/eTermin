@@ -4,8 +4,8 @@ namespace eTermin.Models
     public class Administrator
     {
             public int AdministratorId { get; set; }
-            public String username { get; set; }
-            public String password { get; set; }
-            public int accessLevel { get; set; }  
+            public string Username { get; set; }
+            public string Password { get; set; }
+            public int AccessLevel { get; set; }  
     }
 }

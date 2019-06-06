@@ -8,9 +8,9 @@ namespace eTermin.Models
     public class Subscription
     {
         public int SubscriptionId { get; set; }
-        public String dayOfWeek { get; set; }
-        public DateTime time { get; set; }
-        public String note { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
+        public DateTime Time { get; set; }
+        public string Note { get; set; }
         public int HallId { get; set; }
         public int UserId { get; set; }
 

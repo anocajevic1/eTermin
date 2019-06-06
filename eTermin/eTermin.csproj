@@ -9,14 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Models\:Users:silegrb:Projects:ooad-2018-2019:Grupa4-FFA:eTermin:Models:Hall.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Models\:Users:silegrb:Projects:ooad-2018-2019:Grupa4-FFA:eTermin:Models:Subscription.cs" />
-    <Compile Remove="Models\WTFClass.cs" />
-  </ItemGroup>
 </Project>

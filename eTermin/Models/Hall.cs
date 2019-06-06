@@ -8,13 +8,12 @@ namespace eTermin.Models
     public class Hall
     {
         public int HallId { get; set; }
-        public DateTime startTime { get; set; }
-        public DateTime endTime { get; set; }
-        public int duration { get; set; }
-        public int price { get; set; }
-        public String sport { get; set; }
-        public int SportCentreId
-        { get; set;    }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int Duration { get; set; }
+        public int Price { get; set; }
+        public Sport Sport { get; set; }
+        public int SportCentreId { get; set; }
 
         public virtual SportCentre SportCentre { get; set; }
     }

@@ -8,9 +8,9 @@ namespace eTermin.Models
     public class Transaction
     {
         public int TransactionId { get; set; }
-        public DateTime time { get; set; }
-        public int amount { get; set; }
-        public String note { get; set; }
+        public DateTime Time { get; set; }
+        public int Amount { get; set; }
+        public string Note { get; set; }
         public int SportCentreId { get; set; }
         public int UserId { get; set; }
         public int EmployeeId { get; set; }
