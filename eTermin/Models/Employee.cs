@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace eTermin.Models {
-    public class Employee : Person {
-        public int EmployeeId { get; set; }
-        public int SportCentreId { get; set; }
+    public partial class Employee : Person {
+        public int SportCentreID { get; set; }
 
         public virtual SportCentre SportCentre { get; set; }
     }
