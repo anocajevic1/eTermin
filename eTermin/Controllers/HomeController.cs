@@ -10,12 +10,37 @@ using Microsoft.EntityFrameworkCore;
 namespace eTermin.Controllers {
     public class HomeController : Controller {
         public IActionResult Index() {
+            /*
             var baza = DatabaseContext.getInstance();
             var i = baza.Administrator;
             i.ToList().ForEach((Administrator admin) => {
                 string test = admin.Username;
                 Console.WriteLine(test);
             });
+            */
+            User user = new User {
+                FirstName = "Faris",
+                LastName = "Sisic",
+                Balance = 1000,
+                Email = "fsisic@fmail.com",
+                Username = "fsisic",
+                Password = "test",
+                Photo = null,
+            };
+            Employee employee = new Employee {
+                FirstName = "Faris",
+                LastName = "Poljcic",
+                Email = "fpoljcic@fmail.com",
+                Username = "fpoljcic",
+                Password = "test",
+                SportCentre = null,
+            };
+            var baza = DatabaseContext.getInstance();
+            baza.Person.Add(user);
+            baza.SaveChanges();
+            baza.Person.Add(employee);
+            baza.SaveChanges();
+
             return View();
         }
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eTermin.Migrations
 {
-    public partial class FinMigracijav5 : Migration
+    public partial class MojaMigracija : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,23 +24,6 @@ namespace eTermin.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Person",
-                columns: table => new
-                {
-                    PersonID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Person", x => x.PersonID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SportCentre",
                 columns: table => new
                 {
@@ -54,60 +37,6 @@ namespace eTermin.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SportCentre", x => x.SportCentreID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    UserID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Balance = table.Column<double>(nullable: false),
-                    Photo = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.UserID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Log",
-                columns: table => new
-                {
-                    LogID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateTime = table.Column<DateTime>(nullable: false),
-                    Note = table.Column<string>(nullable: true),
-                    PersonID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Log", x => x.LogID);
-                    table.ForeignKey(
-                        name: "FK_Log_Person_PersonID",
-                        column: x => x.PersonID,
-                        principalTable: "Person",
-                        principalColumn: "PersonID",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    EmployeeID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SportCentreID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.EmployeeID);
-                    table.ForeignKey(
-                        name: "FK_Employee_SportCentre_SportCentreID",
-                        column: x => x.SportCentreID,
-                        principalTable: "SportCentre",
-                        principalColumn: "SportCentreID",
-                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,38 +64,50 @@ namespace eTermin.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transaction",
+                name: "Person",
                 columns: table => new
                 {
-                    TransactionID = table.Column<int>(nullable: false)
+                    PersonID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Time = table.Column<DateTime>(nullable: false),
-                    Amount = table.Column<int>(nullable: false),
-                    Note = table.Column<string>(nullable: true),
-                    SportCentreID = table.Column<int>(nullable: false),
-                    UserID = table.Column<int>(nullable: false),
-                    EmployeeID = table.Column<int>(nullable: false)
+                    Username = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    SportCentreID = table.Column<int>(nullable: true),
+                    Balance = table.Column<double>(nullable: true),
+                    Photo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transaction", x => x.TransactionID);
+                    table.PrimaryKey("PK_Person", x => x.PersonID);
                     table.ForeignKey(
-                        name: "FK_Transaction_Employee_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employee",
-                        principalColumn: "EmployeeID",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Transaction_SportCentre_SportCentreID",
+                        name: "FK_Person_SportCentre_SportCentreID",
                         column: x => x.SportCentreID,
                         principalTable: "SportCentre",
                         principalColumn: "SportCentreID",
                         onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Log",
+                columns: table => new
+                {
+                    LogID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
+                    PersonID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Log", x => x.LogID);
                     table.ForeignKey(
-                        name: "FK_Transaction_User_UserID",
-                        column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
+                        name: "FK_Log_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -220,17 +161,48 @@ namespace eTermin.Migrations
                         principalColumn: "HallID",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Subscription_User_UserID",
+                        name: "FK_Subscription_Person_UserID",
                         column: x => x.UserID,
-                        principalTable: "User",
-                        principalColumn: "UserID",
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
                         onDelete: ReferentialAction.NoAction);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Employee_SportCentreID",
-                table: "Employee",
-                column: "SportCentreID");
+            migrationBuilder.CreateTable(
+                name: "Transaction",
+                columns: table => new
+                {
+                    TransactionID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Time = table.Column<DateTime>(nullable: false),
+                    Amount = table.Column<int>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
+                    SportCentreID = table.Column<int>(nullable: false),
+                    UserID = table.Column<int>(nullable: false),
+                    EmployeeID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transaction", x => x.TransactionID);
+                    table.ForeignKey(
+                        name: "FK_Transaction_Person_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Transaction_SportCentre_SportCentreID",
+                        column: x => x.SportCentreID,
+                        principalTable: "SportCentre",
+                        principalColumn: "SportCentreID",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Transaction_Person_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.NoAction);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hall_SportCentreID",
@@ -241,6 +213,11 @@ namespace eTermin.Migrations
                 name: "IX_Log_PersonID",
                 table: "Log",
                 column: "PersonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_SportCentreID",
+                table: "Person",
+                column: "SportCentreID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservation_HallID",
@@ -296,16 +273,10 @@ namespace eTermin.Migrations
                 name: "Transaction");
 
             migrationBuilder.DropTable(
-                name: "Person");
-
-            migrationBuilder.DropTable(
                 name: "Hall");
 
             migrationBuilder.DropTable(
-                name: "Employee");
-
-            migrationBuilder.DropTable(
-                name: "User");
+                name: "Person");
 
             migrationBuilder.DropTable(
                 name: "SportCentre");

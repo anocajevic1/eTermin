@@ -18,7 +18,6 @@ namespace eTermin.Models {
         }
 
         public DbSet<Administrator> Administrator { get; set; }
-        public DbSet<Employee> Employee { get; set; }
         public DbSet<Hall> Hall { get; set; }
         public DbSet<Log> Log { get; set; }
         public DbSet<Person> Person { get; set; }
@@ -26,7 +25,6 @@ namespace eTermin.Models {
         public DbSet<SportCentre> SportCentre { get; set; }
         public DbSet<Subscription> Subscription { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Administrator>().ToTable("Administrator");

@@ -38,21 +38,6 @@ namespace eTermin.Migrations
                     b.ToTable("Administrator");
                 });
 
-            modelBuilder.Entity("eTermin.Models.Employee", b =>
-                {
-                    b.Property<int>("EmployeeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SportCentreID");
-
-                    b.HasKey("EmployeeID");
-
-                    b.HasIndex("SportCentreID");
-
-                    b.ToTable("Employee");
-                });
-
             modelBuilder.Entity("eTermin.Models.Hall", b =>
                 {
                     b.Property<int>("HallID")
@@ -103,6 +88,9 @@ namespace eTermin.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .IsRequired();
 
@@ -121,6 +109,8 @@ namespace eTermin.Migrations
                     b.HasKey("PersonID");
 
                     b.ToTable("Person");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("eTermin.Models.Reservation", b =>
@@ -221,27 +211,30 @@ namespace eTermin.Migrations
                     b.ToTable("Transaction");
                 });
 
+            modelBuilder.Entity("eTermin.Models.Employee", b =>
+                {
+                    b.HasBaseType("eTermin.Models.Person");
+
+                    b.Property<int>("SportCentreID");
+
+                    b.HasIndex("SportCentreID");
+
+                    b.ToTable("Employee");
+
+                    b.HasDiscriminator().HasValue("Employee");
+                });
+
             modelBuilder.Entity("eTermin.Models.User", b =>
                 {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("eTermin.Models.Person");
 
                     b.Property<double>("Balance");
 
                     b.Property<string>("Photo");
 
-                    b.HasKey("UserID");
-
                     b.ToTable("User");
-                });
 
-            modelBuilder.Entity("eTermin.Models.Employee", b =>
-                {
-                    b.HasOne("eTermin.Models.SportCentre", "SportCentre")
-                        .WithMany()
-                        .HasForeignKey("SportCentreID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("eTermin.Models.Hall", b =>
@@ -301,6 +294,14 @@ namespace eTermin.Migrations
                     b.HasOne("eTermin.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("eTermin.Models.Employee", b =>
+                {
+                    b.HasOne("eTermin.Models.SportCentre", "SportCentre")
+                        .WithMany()
+                        .HasForeignKey("SportCentreID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
