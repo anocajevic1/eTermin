@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace eTermin.Models {
-    public class Person {
+    public abstract class Person {
         [ScaffoldColumn(false)]
         public int PersonID { get; set; }
         [Required]

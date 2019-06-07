@@ -5,7 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace eTermin.Models {
-    public partial class User : Person {
+    public class User : Person {
+        //public int UserID { get; set; }
         [Required]
         public double Balance { get; set; }
         public string Photo { get; set; }
