@@ -5,10 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using eTermin.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTermin.Controllers {
     public class HomeController : Controller {
         public IActionResult Index() {
+            var baza = DatabaseContext.getInstance();
+            var i = baza.Administrator;
+            i.ToList().ForEach((Administrator admin) => {
+                string test = admin.Username;
+                Console.WriteLine(test);
+            });
             return View();
         }
 

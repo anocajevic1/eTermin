@@ -7,7 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTermin.Models {
     public class DatabaseContext : DbContext {
+        public static DatabaseContext instance;
+
+        public static DatabaseContext getInstance() {
+            return instance;
+        }
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {
+            instance = this;
         }
 
         public DbSet<Administrator> Administrator { get; set; }

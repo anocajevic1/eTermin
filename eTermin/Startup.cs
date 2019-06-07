@@ -30,7 +30,10 @@ namespace eTermin {
 
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            var conString = Configuration.GetConnectionString("AzureConnection");
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseSqlServer(conString);
+            DatabaseContext baza = new DatabaseContext(optionsBuilder.Options);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
