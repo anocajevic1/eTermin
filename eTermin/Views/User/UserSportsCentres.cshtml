@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>user sports centres</title>
+    
+   
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/fonts/fontawesome-all.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet" />
+    <link href="~/css/Lista-Rezervacija.css" rel="stylesheet" />
+    <link href="~/css/Map-Clean.css" rel="stylesheet" />
+    <link href="~/css/Navigation-with-Button.css" rel="stylesheet" />
+    <link href="~/css/Navigation-with-Search" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div></div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul><a class="text-secondary" id="linkHome" href="#" style="margin-right: 20px;">Home</a><a class="text-secondary" id="linkSportsCentres" href="#" style="margin-right: 20px;">Sports centres</a><a class="text-secondary" id="linkCustomReservation"
+                    href="#" style="margin-right: 20px;">Custom reservation</a><a class="text-secondary" id="linkMyReservation" href="#" style="margin-right: 20px;">My reservations</a><a class="text-secondary" id="linkMyAccount" href="#" style="margin-right: 20px;">My account</a>
+                <a
+                    class="text-info" id="linkAbout" href="#" style="margin-right: 10px;">About</a>
+                    <form class="form-inline mr-auto" target="_self">
+                        <div class="form-group"><label for="search-field"></label></div>
+                    </form><small class="form-text" id="tvCurrency" style="font-family: 'Amatic SC', cursive;font-size: 29px;width: 40px;">0.00</small><img src="~/img/dollar.png" width="40px" style="margin-right: 20px;filter: grayscale(52%) hue-rotate(9deg);">
+                    <a
+                        class="btn btn-light action-button" role="button" id="btnSignOut" href="#" style="position: relative;top: 10px;">Sign out</a>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="width: 343px;">Sports centres</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-borderless">
+        <div class="container" style="filter: blur(0px) brightness(86%) contrast(0%);">
+            <div class="intro"></div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><input type="date" style="height: 38px;"></div>
+                <div class="col-md-4">
+                    <div class="dropdown"><button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="border-radius: 20px;">Select a sports centre</button>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Neverland</a><a class="dropdown-item" role="presentation" href="#">Narnia</a><a class="dropdown-item" role="presentation" href="#">Mordor</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dropdown"><button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="border-radius: 20px;">Select a sport</button>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">Lakros</a><a class="dropdown-item" role="presentation" href="#">Polo</a><a class="dropdown-item" role="presentation" href="#">Kriket</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Sports centre</th>
+                <th>Hall/Field/Court</th>
+                <th>Price</th>
+                <th>Book</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>01</td>
+                <td>Neverland</td>
+                <td>Polo field</td>
+                <td>23.500USD</td>
+                    <td>
+<button type="button" class="btn btn-info"><i class="fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                    </td>
+            </tr>
+        </tbody>
+    </table></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker-1.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker-2.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker.js"></script>
+</body>
+
+</html>
