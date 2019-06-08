@@ -65,12 +65,12 @@ namespace eTermin.Controllers {
                 // User || Employee
                 Person person = data.First();
                 if (person is User)
-                    return View("..User/Index", person);
+                    return View("../User/Index", person);
                 else if (person is Employee)
-                    return View("..Employee/Index", person);
+                    return View("../Employee/Index", person);
             }
             // Administrator
-            return View("..Administrator/Index", dataAdmin.First());
+            return View("../Administrator/Index", dataAdmin.First());
         }
 
     }
