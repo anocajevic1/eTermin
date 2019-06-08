@@ -76,7 +76,7 @@ namespace eTermin.Controllers {
                         PersonID = currentyLoggedPerson.PersonID
                     });
                     database.SaveChanges();
-                    return View("../User/Index");
+                    return View("../User/Index",currentyLoggedPerson);
                 }
                 else if (currentyLoggedPerson is Employee) {
                     database.Log.Add(new Log
@@ -86,7 +86,7 @@ namespace eTermin.Controllers {
                         PersonID = currentyLoggedPerson.PersonID
                     });
                     database.SaveChanges();
-                    return View("../Employee/Index");
+                    return View("../Employee/Index",currentyLoggedPerson);
                 }
             }
             currentyLoggedAdministrator = dataAdmin.First();
@@ -97,7 +97,7 @@ namespace eTermin.Controllers {
                 PersonID = currentyLoggedAdministrator.AdministratorID
             });
             database.SaveChanges();
-            return View("../Administrator/Index");
+            return View("../Administrator/Index",currentyLoggedAdministrator);
         }
 
     }
