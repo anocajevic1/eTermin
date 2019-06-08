@@ -7,20 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace eTermin.Controllers
-{
-    public class AdministratorController : Controller
-    {
+namespace eTermin.Controllers {
+    public class AdministratorController : Controller {
         private DatabaseContext database = DatabaseContext.getInstance();
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
+
+        public IActionResult Index() {
             return View();
         }
-        public IActionResult AdministratorSignOut_OnClick()
-        {
-            database.Log.Add(new Log
-            {
+
+        public IActionResult AdministratorSignOut_OnClick() {
+            database.Log.Add(new Log {
                 DateTime = DateTime.Now,
                 Note = "Administrator \"" + LoginController.currentyLoggedAdministrator.Username + "\" has signed out.",
                 PersonID = LoginController.currentyLoggedAdministrator.AdministratorID

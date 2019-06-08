@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eTermin.Models
-{
-    public class Subscription
-    {
+namespace eTermin.Models {
+    public class Subscription {
         [ScaffoldColumn(false)]
         public int SubscriptionID { get; set; }
         [Required]
