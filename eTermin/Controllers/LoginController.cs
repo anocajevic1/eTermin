@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 namespace eTermin.Controllers {
     public class LoginController : Controller {
         private static DatabaseContext database = DatabaseContext.getInstance();
+        public static Person currentyLoggedPerson = null;
+        public static Administrator currentyLoggedAdministrator = null;
+
         public IActionResult Index() {
             /*
             var baza = DatabaseContext.getInstance();
@@ -63,14 +66,38 @@ namespace eTermin.Controllers {
                 return View("Index");
             else if (dataAdmin.Count() == 0) {
                 // User || Employee
-                Person person = data.First();
-                if (person is User)
-                    return View("../User/Index", person);
-                else if (person is Employee)
-                    return View("../Employee/Index", person);
+                currentyLoggedPerson = data.First();
+                if (currentyLoggedPerson is User)
+                {
+                    database.Log.Add(new Log
+                    {
+                        DateTime = DateTime.Now,
+                        Note = "User \"" + currentyLoggedPerson.Username + "\" has signed in.",
+                        PersonID = currentyLoggedPerson.PersonID
+                    });
+                    database.SaveChanges();
+                    return View("../User/Index");
+                }
+                else if (currentyLoggedPerson is Employee) {
+                    database.Log.Add(new Log
+                    {
+                        DateTime = DateTime.Now,
+                        Note = "Employee \"" + currentyLoggedPerson.Username + "\" has signed in.",
+                        PersonID = currentyLoggedPerson.PersonID
+                    });
+                    database.SaveChanges();
+                    return View("../Employee/Index");
+                }
             }
-            // Administrator
-            return View("../Administrator/Index", dataAdmin.First());
+            currentyLoggedAdministrator = dataAdmin.First();
+            database.Log.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Note = "Administrator \"" + currentyLoggedAdministrator.Username + "\" has signed in.",
+                PersonID = currentyLoggedAdministrator.AdministratorID
+            });
+            database.SaveChanges();
+            return View("../Administrator/Index");
         }
 
     }

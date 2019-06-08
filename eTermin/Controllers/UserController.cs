@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eTermin.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,9 +11,12 @@ namespace eTermin.Controllers
 {
     public class UserController : Controller
     {
-        // GET: /<controller>/
+
+        private DatabaseContext database = DatabaseContext.getInstance();
+        
         public IActionResult Index()
         {
+
             return View();
         
         }
@@ -43,6 +47,14 @@ namespace eTermin.Controllers
         }
         public IActionResult UserSignOut_OnClick()
         {
+            database.Log.Add(new Log
+            {
+                DateTime = DateTime.Now,
+                Note = "User \"" + LoginController.currentyLoggedPerson.Username + "\" has signed out.",
+                PersonID = LoginController.currentyLoggedPerson.PersonID
+            });
+            LoginController.currentyLoggedPerson = null;
+            database.SaveChanges();
             return View("../Login/Index");
 
         }
