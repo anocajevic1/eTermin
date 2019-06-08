@@ -11,7 +11,7 @@ namespace eTermin.Controllers
     public class RegisterUserController : Controller
     {
 
-        private static DatabaseContext database
+        private static DatabaseContext database = DatabaseContext.getInstance();
         public IActionResult Index()
         {
            
@@ -24,7 +24,6 @@ namespace eTermin.Controllers
             if (etFirstName.Equals("") || etLastName.Equals("") || etUsername.Equals("") || etPassword.Equals("") || etConfirmPassword.Equals("") || etEmail.Equals("")) validationOk = false;
             if (!etPassword.Equals(etConfirmPassword)) validationOk = false;
 
-             database = DatabaseContext.getInstance(); 
             var people = database.Person.Where((Person person) => person.Username.Equals(etUsername));
             var admins = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername));
             if (people.Count() != 0 || admins.Count() != 0) validationOk = false;

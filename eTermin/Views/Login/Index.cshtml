@@ -22,7 +22,11 @@
                     @Html.ActionLink("Sign up", "Index", "RegisterUser", null, new { @class = "btn btn-primary btn-lg", style = "position: relative;background: #40A15D;left: 70px;", type = "submit" })
                 </div>
                 <div class="btn-group" role="group"></div>
-                <div class="form-group"><button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Sign in as guest</button></div>
+                <div class="form-group">
+                    @*<button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Sign in as guest</button>*@
+                    @Html.ActionLink("Sign in as guest", "Index", "Guest", null, new { @class = "btn btn-primary btn-lg", style = "position: relative;background: #40A15D;left: 70px;", type = "submit" })
+
+                </div>
                 @Html.ActionLink("Forgot your username or password?", "StartPasswordRecovery", "Login", null, new { @class = "forgot" })
             </form>
         }
