@@ -12,3 +12,4 @@
 /eTermin/bin/Debug/netcoreapp2.2
 /eTermin/obj/Debug/netcoreapp2.2
 /eTermin/eTermin.csproj.user
+/eTermin/secret.json

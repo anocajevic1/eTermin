@@ -66,7 +66,7 @@ namespace eTermin.Controllers
 
             var people = database.Person.Where((Person person) => person.Username.Equals(etUsername));
             var admins = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername));
-            if ((people.Count() != 0 || admins.Count() != 0) || ( people.Count() == 1 && LoginController.currentyLoggedPerson.Username.Equals(etUsername ))) validationOk = false;
+            if ((admins.Count() != 0) || (people.Count() != 0 && !LoginController.currentyLoggedPerson.Username.Equals(etUsername))) validationOk = false;
             if (validationOk)
             {
                 LoginController.currentyLoggedPerson.FirstName = etFirstName;
