@@ -25,10 +25,14 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a class="text-secondary" id="linkHome" href="#" style="margin-right: 20px;">Home</a><a class="text-secondary" id="linkSportsCentres" href="#" style="margin-right: 20px;">Sports centres</a><a class="text-secondary" id="linkCustomReservation"
-                    href="#" style="margin-right: 20px;">Custom reservation</a><a class="text-secondary" id="linkMyReservations" href="#" style="margin-right: 20px;">My reservations</a><a class="text-secondary" id="linkMyAccount" href="#" style="margin-right: 20px;">My account</a>
-                <a
-                    class="text-info" id="linkAbout" href="#">About</a>
+                </ul>
+@Html.ActionLink("Home", "Index", "User", null, new { @class="text-secondary",d="linkHome",style="margin-right: 20px;" }) @Html.ActionLink("Sports centres", "TabSportsCentres", "User", null, new { @class="text-secondary",d="linkSportsCentres",style="margin-right: 20px;" })
+@Html.ActionLink("Custom reservation", "TabCustomReservation", "User", null, new { @class="text-secondary",d="linkCustomReservation",style="margin-right: 20px;" })
+@Html.ActionLink("My reservations", "TabMyReservations", "User", null, new { @class="text-secondary",d="linkMyReservation",style="margin-right: 20px;" })
+@Html.ActionLink("My account", "Index", "TabMyAccount", null, new { @class="text-secondary",d="linkMyAccount",style="margin-right: 20px;" })
+@Html.ActionLink("About", "Index", "TabAbout", null, new { @class="text-secondary",d="linkAbout",style="margin-right: 20px;" })
+
+ 
                     <form class="form-inline mr-auto" target="_self">
                         <div class="form-group"><label for="search-field"></label></div>
                     </form><small class="form-text text-muted" id="textCurrency" style="font-family: 'Amatic SC', cursive;font-size: 29px;width: 40px;">0.00</small><img src="assets/img/dollar.png" width="40px" style="filter: grayscale(52%) hue-rotate(9deg);margin-right: 20px;">
