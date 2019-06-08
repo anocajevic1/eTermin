@@ -74,16 +74,25 @@
                         </thead>
                         <tbody>
 
+
+
+                            @{
+                            List<Reservation> reservations = Model.myReservations();
+                            for (int i = 0; i < reservations.Count; i++)
+                                {
                             <tr>
-                                <td>01</td>
-                                <td>14252728182</td>
-                                <td>Neverland</td>
-                                <td>23.500USD</td>
+                                <td>@(i + 1)</td>
+                                <td>@reservations[i].ReservationID.</td>
+                                <td>@reservations[i].HallID</td>
+                                <td>30</td>
                                 <td>
                                     <button type="button" class="btn btn-danger"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                                     <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                                 </td>
                             </tr>
+                            }
+                            }
+
                         </tbody>
                     </table>
                 </div>

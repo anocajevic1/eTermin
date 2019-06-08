@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace eTermin.Models {
     public class User : Person {
+        private static DatabaseContext database = DatabaseContext.getInstance();
         //public int UserID { get; set; }
         [Required]
         public double Balance { get; set; }
         public string Photo { get; set; }
+        public List<Reservation> myReservations()
+        {
+            return database.Reservation.Where((Reservation reservation) => reservation.PersonID.Equals(this.PersonID)).ToList();
+        }
     }
+
 }

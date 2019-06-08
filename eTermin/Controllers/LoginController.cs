@@ -22,6 +22,7 @@ namespace eTermin.Controllers {
                 Console.WriteLine(test);
             });
             */
+          
             /*
             User user = new User {
                 FirstName = "Faris",
