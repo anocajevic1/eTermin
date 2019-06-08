@@ -15,7 +15,12 @@
             <div class="illustration"></div>
             <div class="form-group"><input class="form-control" type="text" id="etUsername" placeholder="Username"></div>
             <div class="form-group"><input class="form-control" type="password" id="etPasswod" name="password" placeholder="Password"></div>
-            <div class="btn-group" role="group"><button class="btn btn-primary btn-lg" id="btnSignIn" type="submit" style="background: #40A15D;">Sign in</button><button class="btn btn-primary btn-lg" type="submit" style="position: relative;background: #40A15D;left: 70px;">Sign up</button></div>
+            <div class="btn-group" role="group">
+                @*<button class="btn btn-primary btn-lg" id="btnSignIn" type="submit" style="background: #40A15D;">Sign in</button>*@
+                @Html.ActionLink("Sign in", "GuestHomeForm", "Guest", null, new { @class = "btn btn-primary btn-lg", style = "background: #40A15D;", type = "submit" })
+                @*<button class="btn btn-primary btn-lg" type="submit" style="position: relative;background: #40A15D;left: 70px;">Sign up</button>*@
+                @Html.ActionLink("Sign up", "RegistrationForm", "RegisterUser", null, new { @class = "btn btn-primary btn-lg", style = "position: relative;background: #40A15D;left: 70px;", type = "submit" })
+            </div>
             <div class="btn-group" role="group"></div>
             <div class="form-group"><button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Sign in as guest</button></div>
             @Html.ActionLink("Forgot your username or password?", "RecoveryForm1", "Home", null, new { @class = "forgot" })

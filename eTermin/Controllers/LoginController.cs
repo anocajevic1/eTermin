@@ -8,7 +8,7 @@ using eTermin.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTermin.Controllers {
-    public class HomeController : Controller {
+    public class LoginController : Controller {
         public IActionResult Index() {
             /*
             var baza = DatabaseContext.getInstance();
@@ -18,6 +18,7 @@ namespace eTermin.Controllers {
                 Console.WriteLine(test);
             });
             */
+            /*
             User user = new User {
                 FirstName = "Faris",
                 LastName = "Sisic",
@@ -40,7 +41,7 @@ namespace eTermin.Controllers {
             baza.SaveChanges();
             baza.Person.Add(employee);
             baza.SaveChanges();
-
+            */
             return View();
         }
 
@@ -54,6 +55,10 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult RecoveryForm1() {
+            return View();
+        }
+
+        public IActionResult RegistrationForm() {
             return View();
         }
     }
