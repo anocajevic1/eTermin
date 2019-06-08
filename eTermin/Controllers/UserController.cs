@@ -13,8 +13,34 @@ namespace eTermin.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View("userHome");
+            return View();
         
         }
+        public IActionResult TabSportsCentres()
+        {
+            return View("UserSportsCentres");
+
+        }
+        public IActionResult TabCustomReservation()
+        {
+            return View("UserCustomReservation");
+
+        }
+        public IActionResult TabMyReservations()
+        {
+            return View("UserMyReservations");
+
+        }
+        public IActionResult TabMyAccount()
+        {
+            return View("UserMyAccount");
+
+        }
+        public IActionResult TabAbout()
+        {
+            return View("UserAbout");
+
+        }
+
     }
 }

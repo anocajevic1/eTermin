@@ -29,8 +29,9 @@
 @Html.ActionLink("Home", "Index", "User", null, new { @class="text-secondary",d="linkHome",style="margin-right: 20px;" }) @Html.ActionLink("Sports centres", "TabSportsCentres", "User", null, new { @class="text-secondary",d="linkSportsCentres",style="margin-right: 20px;" })
 @Html.ActionLink("Custom reservation", "TabCustomReservation", "User", null, new { @class="text-secondary",d="linkCustomReservation",style="margin-right: 20px;" })
 @Html.ActionLink("My reservations", "TabMyReservations", "User", null, new { @class="text-secondary",d="linkMyReservation",style="margin-right: 20px;" })
-@Html.ActionLink("My account", "Index", "TabMyAccount", null, new { @class="text-secondary",d="linkMyAccount",style="margin-right: 20px;" })
-@Html.ActionLink("About", "Index", "TabAbout", null, new { @class="text-secondary",d="linkAbout",style="margin-right: 20px;" })
+@Html.ActionLink("My account", "TabMyAccount", "User", null, new { @class="text-secondary",d="linkMyAccount",style="margin-right: 20px;" })
+@Html.ActionLink("About", "TabAbout", "User", null, new { @class="text-secondary",d="linkAbout",style="margin-right: 20px;" })
+
 
  
                     <form class="form-inline mr-auto" target="_self">
