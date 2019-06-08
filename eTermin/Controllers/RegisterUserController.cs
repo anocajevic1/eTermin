@@ -10,6 +10,8 @@ namespace eTermin.Controllers
 {
     public class RegisterUserController : Controller
     {
+
+        private static DatabaseContext database
         public IActionResult Index()
         {
            
@@ -21,14 +23,15 @@ namespace eTermin.Controllers
             Boolean validationOk = true;
             if (etFirstName.Equals("") || etLastName.Equals("") || etUsername.Equals("") || etPassword.Equals("") || etConfirmPassword.Equals("") || etEmail.Equals("")) validationOk = false;
             if (!etPassword.Equals(etConfirmPassword)) validationOk = false;
-            var baza = DatabaseContext.getInstance();
-            List<User> users = baza.Person.OfType<User>().ToList();
-            for (int i = 0; i < users.Count; i++)
-                if (users[i].Username.Equals(etUsername))
-                    validationOk = false;
-            if( validationOk)
+
+             database = DatabaseContext.getInstance(); 
+            var people = database.Person.Where((Person person) => person.Username.Equals(etUsername));
+            var admins = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername));
+            if (people.Count() != 0 || admins.Count() != 0) validationOk = false;
+
+            if ( validationOk)
             {
-                baza.Person.Add(new User
+                database.Person.Add(new User
                 {
                     FirstName = etFirstName,
                     LastName = etLastName,
@@ -38,7 +41,7 @@ namespace eTermin.Controllers
                     Balance = 0,
                     Photo = null
                 });
-                baza.SaveChanges();
+                database.SaveChanges();
                 return View("../Login/Index");
             }
             return View("RegistrationForm");
