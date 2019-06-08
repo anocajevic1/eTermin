@@ -20,7 +20,18 @@
             </div>
             <div class="btn-group" role="group"></div>
             <div class="btn-group" role="group"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Register</button></div>
+            <div class="form-group">
+                @*<button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Register</button>*@
+                @Html.ActionLink("Register", "RegisterUser", "Login", new User {
+               FirstName = "Faris",
+               LastName = "Sisic",
+               Balance = 1000,
+               Email = "fsisic@fmail.com",
+               Username = "fsisic",
+               Password = "test",
+               Photo = null, },
+               new { @class = "btn btn-primary btn-block", style = "background: #40A15D;", type = "submit" })
+            </div>
         </form>
     </div>
     <script src="~/js/jquery.min.js"></script>

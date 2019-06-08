@@ -45,21 +45,21 @@ namespace eTermin.Controllers {
             return View();
         }
 
-        public IActionResult Privacy() {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult RecoveryForm1() {
-            return View();
+        public IActionResult StartPasswordRecovery() {
+            return View("RecoveryForm1");
         }
 
-        public IActionResult RegistrationForm() {
-            return View();
+        public IActionResult RegisterUser(User user) {
+            if (user != null) {
+                Console.WriteLine(user.FirstName);
+                Console.WriteLine(user.Username);
+            }
+            return View("Index");
         }
     }
 }

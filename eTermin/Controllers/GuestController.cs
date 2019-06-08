@@ -8,9 +8,9 @@ namespace eTermin.Controllers
 {
     public class GuestController : Controller
     {
-        public IActionResult GuestHomeForm()
+        public IActionResult Index()
         {
-            return View();
+            return View("GuestHomeForm");
         }
     }
 }

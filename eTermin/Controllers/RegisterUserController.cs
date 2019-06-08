@@ -8,9 +8,9 @@ namespace eTermin.Controllers
 {
     public class RegisterUserController : Controller
     {
-        public IActionResult RegistrationForm()
+        public IActionResult Index()
         {
-            return View();
+            return View("RegistrationForm");
         }
     }
 }
