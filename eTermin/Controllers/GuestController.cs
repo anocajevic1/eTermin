@@ -12,5 +12,21 @@ namespace eTermin.Controllers
         {
             return View("GuestHomeForm");
         }
+        public IActionResult TabSportsCentres()
+        {
+            return View("GuestSportsCentres");
+        }
+        public IActionResult TabAbout()
+        {
+            return View("GuestAbout");
+        }
+        public IActionResult GuestSignUp_OnClick()
+        {
+            return View("../RegisterUser/RegistrationForm");
+        }
+        public IActionResult GuestSignIn_OnClick()
+        {
+            return View("../Login/Index");
+        }
     }
 }
