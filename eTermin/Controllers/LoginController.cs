@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTermin.Controllers {
     public class LoginController : Controller {
+        private static DatabaseContext database = DatabaseContext.getInstance();
         public IActionResult Index() {
             /*
             var baza = DatabaseContext.getInstance();
@@ -54,12 +55,23 @@ namespace eTermin.Controllers {
             return View("RecoveryForm1");
         }
 
-        public IActionResult RegisterUser(User user) {
-            if (user != null) {
-                Console.WriteLine(user.FirstName);
-                Console.WriteLine(user.Username);
+        [HttpPost]
+        public IActionResult SignIn(string etUsername, string etPasswod) {
+            var dataAdmin = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername) && administrator.Password.Equals(etPasswod));
+            var data = database.Person.Where((Person person) => person.Username.Equals(etUsername) && person.Password.Equals(etPasswod));
+            if (data.Count() == 0 && dataAdmin.Count() == 0)
+                return View("Index");
+            else if (dataAdmin.Count() == 0) {
+                // User || Employee
+                Person person = data.First();
+                if (person is User)
+                    return View("..User/Index", person);
+                else if (person is Employee)
+                    return View("..Employee/Index", person);
             }
-            return View("Index");
+            // Administrator
+            return View("..Administrator/Index", dataAdmin.First());
         }
+
     }
 }
