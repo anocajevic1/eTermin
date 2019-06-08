@@ -56,9 +56,9 @@ namespace eTermin.Controllers {
         }
 
         [HttpPost]
-        public IActionResult SignIn(string etUsername, string etPasswod) {
+        public IActionResult SignIn(string etUsername, string etPassword) {
             var dataAdmin = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername) && administrator.Password.Equals(etPasswod));
-            var data = database.Person.Where((Person person) => person.Username.Equals(etUsername) && person.Password.Equals(etPasswod));
+            var data = database.Person.Where((Person person) => person.Username.Equals(etUsername) && person.Password.Equals(etPassword));
             if (data.Count() == 0 && dataAdmin.Count() == 0)
                 return View("Index");
             else if (dataAdmin.Count() == 0) {
