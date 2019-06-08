@@ -58,6 +58,28 @@ namespace eTermin.Controllers
             return View("../Login/Index");
 
         }
+        public IActionResult MyAccountSaveEditing_onClick(string etFirstName,string etLastName,string etUsername, string etEmail, string etPassword,string etConfirmPassword)
+        {
+            Boolean validationOk = true;
+            if (etFirstName.Equals("") || etLastName.Equals("") || etUsername.Equals("") || etPassword.Equals("") || etConfirmPassword.Equals("") || etEmail.Equals("")) validationOk = false;
+            if (!etPassword.Equals(etConfirmPassword)) validationOk = false;
+
+            var people = database.Person.Where((Person person) => person.Username.Equals(etUsername));
+            var admins = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername));
+            if ((people.Count() != 0 || admins.Count() != 0) || ( people.Count() == 1 && LoginController.currentyLoggedPerson.Username.Equals(etUsername ))) validationOk = false;
+            if (validationOk)
+            {
+                LoginController.currentyLoggedPerson.FirstName = etFirstName;
+                LoginController.currentyLoggedPerson.LastName = etLastName;
+                LoginController.currentyLoggedPerson.Email = etEmail;
+                LoginController.currentyLoggedPerson.Username = etUsername;
+                LoginController.currentyLoggedPerson.Password = etPassword;
+                database.Person.Update(LoginController.currentyLoggedPerson);
+                database.SaveChanges();
+   
+            }
+            return View("UserMyAccount", LoginController.currentyLoggedPerson);
+        }
 
     }
 }
