@@ -18,5 +18,9 @@ namespace eTermin.Models {
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+
+        public override string ToString() {
+            return Username;
+        }
     }
 }

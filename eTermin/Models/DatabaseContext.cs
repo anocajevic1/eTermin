@@ -52,5 +52,19 @@ namespace eTermin.Models {
         public Hall GetHall(int hallID) {
             return Hall.Find(hallID);
         }
+
+        public string GetUsername(string email) {
+            var persons = Person.Where((Person person) => person.Email.Equals(email));
+            if (persons.Count() == 0)
+                return null;
+            else
+                return persons.First().Username;
+        }
+
+        public void UpdatePassword(string username, string etPassword) {
+            var user = Person.Where((Person person) => person.Username.Equals(username)).First();
+            user.Password = etPassword;
+            SaveChanges();
+        }
     }
 }

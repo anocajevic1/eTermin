@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>loginForma</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Login-Form-Dark.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="login-dark">
+        @using (Html.BeginForm("SendRecoveryCode", "LoginRecovery")) {
+            <form method="post">
+                <h2 class="sr-only">Login Form</h2><img class="img-fluid" src="~/img/mhsc-logo.png"><small class="form-text text-muted">Please enter your email down below and we will send you a recovery code for your account shortly.&nbsp;</small>
+                <div class="illustration"><input class="form-control" type="text" name="etEmail" placeholder="Email"></div>
+                <div class="btn-group" role="group"></div>
+                <div class="btn-group" role="group"></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" id="btnSignInAsGuest" type="submit" style="background: #40A15D;">Send recovery code</button></div>
+            </form>
+        }
+        </div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

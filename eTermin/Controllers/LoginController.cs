@@ -55,10 +55,6 @@ namespace eTermin.Controllers {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult StartPasswordRecovery() {
-            return View("RecoveryForm1");
-        }
-
         [HttpPost]
         public IActionResult SignIn(string etUsername, string etPassword) {
             var dataAdmin = database.Administrator.Where((Administrator administrator) => administrator.Username.Equals(etUsername) && administrator.Password.Equals(etPassword));
