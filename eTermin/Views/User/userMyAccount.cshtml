@@ -1,70 +1,69 @@
 ﻿@model eTermin.Models.User
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>user my account</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>user my account</title>
 
 
-        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="~/css/Map-Clean.css" rel="stylesheet" />
-        <link href="~/css/Navigation-with-Button.css" rel="stylesheet" />
-        <link href="~/css/Navigation-with-Search.css" rel="stylesheet" />
-        <link href="~/css/Registration-Form-with-Photo.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" />
-        <link href="~/css/styles.css" rel="stylesheet" />
-    </head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Map-Clean.css" rel="stylesheet" />
+    <link href="~/css/Navigation-with-Button.css" rel="stylesheet" />
+    <link href="~/css/Navigation-with-Search.css" rel="stylesheet" />
+    <link href="~/css/Registration-Form-with-Photo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
 
-    <body>
-        <div></div>
-        <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-            <div class="container">
-                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
-                <div class="collapse navbar-collapse"
-                     id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"></li>
-                        <li class="nav-item" role="presentation"></li>
-                        <li class="nav-item" role="presentation"></li>
-                    </ul>
-                    @Html.ActionLink("Home", "Index", "User", null, new { @class = "text-secondary", d = "linkHome", style = "margin-right: 20px;" })
-                    @Html.ActionLink("Sports centres", "TabSportsCentres", "User", null, new { @class = "text-secondary", d = "linkSportsCentres", style = "margin-right: 20px;" })
-                    @Html.ActionLink("Custom reservation", "TabCustomReservation", "User", null, new { @class = "text-secondary", d = "linkCustomReservation", style = "margin-right: 20px;" })
-                    @Html.ActionLink("My reservations", "TabMyReservations", "User", null, new { @class = "text-secondary", d = "linkMyReservation", style = "margin-right: 20px;" })
-                    @Html.ActionLink("My account", "TabMyAccount", "User", null, new { @class = "text-secondary", d = "linkMyAccount", style = "margin-right: 20px;" })
-                    @Html.ActionLink("About", "TabAbout", "User", null, new { @class = "text-secondary", d = "linkAbout", style = "margin-right: 20px;" })
-                    <form class="form-inline mr-auto" target="_self">
-                        <div class="form-group"><label for="search-field"></label></div>
-                    </form>
-                    <small class="form-text" id="tvCurrency" style="font-family: 'Amatic SC', cursive;font-size: 29px;width: 40px;">@Model.Balance</small><img src="~/img/dollar.png" width="40px" style="margin-right: 20px;filter: grayscale(52%) hue-rotate(9deg);">
-                    <a class="btn btn-light action-button" role="button" id="btnSignOut" href="#">Sign out</a>
-                </div>
+<body>
+    <div></div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+        <div class="container">
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
+            <div class="collapse navbar-collapse"
+                 id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+                @Html.ActionLink("Home", "Index", "User", null, new { @class = "text-secondary", d = "linkHome", style = "margin-right: 20px;" })
+                @Html.ActionLink("Sports centres", "TabSportsCentres", "User", null, new { @class = "text-secondary", d = "linkSportsCentres", style = "margin-right: 20px;" })
+                @Html.ActionLink("Custom reservation", "TabCustomReservation", "User", null, new { @class = "text-secondary", d = "linkCustomReservation", style = "margin-right: 20px;" })
+                @Html.ActionLink("My reservations", "TabMyReservations", "User", null, new { @class = "text-secondary", d = "linkMyReservation", style = "margin-right: 20px;" })
+                @Html.ActionLink("My account", "TabMyAccount", "User", null, new { @class = "text-secondary", d = "linkMyAccount", style = "margin-right: 20px;" })
+                @Html.ActionLink("About", "TabAbout", "User", null, new { @class = "text-secondary", d = "linkAbout", style = "margin-right: 20px;" })
+                <form class="form-inline mr-auto" target="_self">
+                    <div class="form-group"><label for="search-field"></label></div>
+                </form>
+                <small class="form-text" id="tvCurrency" style="font-family: 'Amatic SC', cursive;font-size: 29px;width: 40px;">@Model.Balance</small><img src="~/img/dollar.png" width="40px" style="margin-right: 20px;filter: grayscale(52%) hue-rotate(9deg);">
+                <a class="btn btn-light action-button" role="button" id="btnSignOut" href="#">Sign out</a>
             </div>
-        </nav>
-        <div class="register-photo" style="background: #fff;">
-            <div class="form-container">
-                <div class="image-holder" style="width: 470px;height: 401px;"></div>
-                @using (Html.BeginForm("MyAccountSaveEditing_onClick", "User")){
+        </div>
+    </nav>
+    <div class="register-photo" style="background: #fff;">
+        <div class="form-container">
+            <div class="image-holder" style="width: 470px;height: 401px;"></div>
+            @using (Html.BeginForm("MyAccountSaveEditing_onClick", "User")) {
                 <form method="post" style="height: 493px;">
                     <h2 class="text-center"><strong>Edit</strong>&nbsp;your account here.</h2>
                     <div class="form-group"><input class="form-control" type="text" name="etFirstName" value="@Model.FirstName" placeholder="First name" style="margin-bottom: 15px;"></div>
                     <div class="form-group"><input class="form-control" type="text" name="etLastName" value="@Model.LastName" placeholder="Last name" style="margin-bottom: 15px;"></div>
-                    <div class="form-group"><input class="form-control" type="text" name="etUsername" value="@Model.Username"="Username" style="margin-bottom: 15px;"></div>
-                    <div class="form-group"><input class="form-control" type="email" name="etEmail"  value="@Model.Email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="etPassword"  value="@Model.Password" placeholder="Password"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="etConfirmPassword"  value="@Model.Password" placeholder="Confirm password"></div>
+                    <div class="form-group"><input class="form-control" type="text" name="etUsername" value="@Model.Username" style="margin-bottom: 15px;"></div>
+                    <div class="form-group"><input class="form-control" type="email" name="etEmail" value="@Model.Email" placeholder="Email"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="etPassword" value="@Model.Password" placeholder="Password"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="etConfirmPassword" value="@Model.Password" placeholder="Confirm password"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" id="btnSave" type="submit">Save</button></div>
-                  @*  <div class="form-group"><button class="btn btn-primary btn-block" id="btnGiftCurrency" type="submit">Gift currency</button></div> *@
                 </form>
-                }
-            </div>
+            }
         </div>
-        <div class="map-clean"></div>
-        <script src="~/js/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    </body>
+    </div>
+    <div class="map-clean"></div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
 
 </html>

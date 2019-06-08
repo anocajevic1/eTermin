@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eTermin.Models
-{
-    public class Hall
-    {
+namespace eTermin.Models {
+    public class Hall {
         [ScaffoldColumn(false)]
         public int HallID { get; set; }
         [Required]

@@ -14,39 +14,6 @@ namespace eTermin.Controllers {
         public static Administrator currentyLoggedAdministrator = null;
 
         public IActionResult Index() {
-            /*
-            var baza = DatabaseContext.getInstance();
-            var i = baza.Administrator;
-            i.ToList().ForEach((Administrator admin) => {
-                string test = admin.Username;
-                Console.WriteLine(test);
-            });
-            */
-          
-            /*
-            User user = new User {
-                FirstName = "Faris",
-                LastName = "Sisic",
-                Balance = 1000,
-                Email = "fsisic@fmail.com",
-                Username = "fsisic",
-                Password = "test",
-                Photo = null,
-            };
-            Employee employee = new Employee {
-                FirstName = "Faris",
-                LastName = "Poljcic",
-                Email = "fpoljcic@fmail.com",
-                Username = "fpoljcic",
-                Password = "test",
-                SportCentre = null,
-            };
-            var baza = DatabaseContext.getInstance();
-            baza.Person.Add(user);
-            baza.SaveChanges();
-            baza.Person.Add(employee);
-            baza.SaveChanges();
-            */
             return View();
         }
 
@@ -64,37 +31,32 @@ namespace eTermin.Controllers {
             else if (dataAdmin.Count() == 0) {
                 // User || Employee
                 currentyLoggedPerson = data.First();
-                if (currentyLoggedPerson is User)
-                {
-                    database.Log.Add(new Log
-                    {
+                if (currentyLoggedPerson is User) {
+                    database.Log.Add(new Log {
                         DateTime = DateTime.Now,
                         Note = "User \"" + currentyLoggedPerson.Username + "\" has signed in.",
                         PersonID = currentyLoggedPerson.PersonID
                     });
                     database.SaveChanges();
-                    return View("../User/Index",currentyLoggedPerson);
-                }
-                else if (currentyLoggedPerson is Employee) {
-                    database.Log.Add(new Log
-                    {
+                    return View("../User/Index", currentyLoggedPerson);
+                } else if (currentyLoggedPerson is Employee) {
+                    database.Log.Add(new Log {
                         DateTime = DateTime.Now,
                         Note = "Employee \"" + currentyLoggedPerson.Username + "\" has signed in.",
                         PersonID = currentyLoggedPerson.PersonID
                     });
                     database.SaveChanges();
-                    return View("../Employee/Index",currentyLoggedPerson);
+                    return View("../Employee/Index", currentyLoggedPerson);
                 }
             }
             currentyLoggedAdministrator = dataAdmin.First();
-            database.Log.Add(new Log
-            {
+            database.Log.Add(new Log {
                 DateTime = DateTime.Now,
                 Note = "Administrator \"" + currentyLoggedAdministrator.Username + "\" has signed in.",
                 PersonID = currentyLoggedAdministrator.AdministratorID
             });
             database.SaveChanges();
-            return View("../Administrator/Index",currentyLoggedAdministrator);
+            return View("../Administrator/Index", currentyLoggedAdministrator);
         }
 
     }

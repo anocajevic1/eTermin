@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eTermin.Models
-{
-    public class Transaction
-    {
+namespace eTermin.Models {
+    public class Transaction {
         [ScaffoldColumn(false)]
         public int TransactionID { get; set; }
         [Required]
