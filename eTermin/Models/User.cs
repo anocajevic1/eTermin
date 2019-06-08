@@ -11,10 +11,6 @@ namespace eTermin.Models {
         [Required]
         public double Balance { get; set; }
         public string Photo { get; set; }
-        public List<Reservation> myReservations()
-        {
-            return database.Reservation.Where((Reservation reservation) => reservation.PersonID.Equals(this.PersonID)).ToList();
-        }
     }
 
 }

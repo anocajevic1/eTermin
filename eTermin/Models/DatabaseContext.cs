@@ -38,5 +38,19 @@ namespace eTermin.Models {
             modelBuilder.Entity<Transaction>().ToTable("Transaction");
             modelBuilder.Entity<User>().ToTable("User");
         }
+
+        public List<Reservation> Reservations(Person person) {
+            List<Reservation> reservations = Reservation.Where((Reservation reservation) => reservation.PersonID.Equals(person.PersonID)).ToList();
+            reservations.Sort((Reservation a, Reservation b) => DateTime.Compare(a.DateTime, b.DateTime));
+            return reservations;
+        }
+
+        public SportCentre GetSportCentre(int hallID) {
+            return SportCentre.Where((SportCentre sportCentre) => GetHall(hallID).SportCentreID.Equals(sportCentre.SportCentreID)).First();
+        }
+
+        public Hall GetHall(int hallID) {
+            return Hall.Find(hallID);
+        }
     }
 }
