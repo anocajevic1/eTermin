@@ -41,6 +41,17 @@ namespace eTermin.Controllers
                     Photo = null
                 });
                 database.SaveChanges();
+                var peopleUpdated = database.Person.Where((Person person) => person.Username.Equals(etUsername)).ToList();
+                Person thisPerson = peopleUpdated[0];
+
+                database.Log.Add(new Log
+                {
+                    DateTime = DateTime.Now,
+                    Note = "New user \"" + thisPerson.Username + "\" registered",
+                    PersonID = thisPerson.PersonID
+
+                });
+                database.SaveChanges();
                 return View("../Login/Index");
             }
             return View("RegistrationForm");

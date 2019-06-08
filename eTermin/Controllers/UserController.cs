@@ -41,6 +41,11 @@ namespace eTermin.Controllers
             return View("UserAbout");
 
         }
+        public IActionResult UserSignOut_OnClick()
+        {
+            return View("../Login/Index");
+
+        }
 
     }
 }
