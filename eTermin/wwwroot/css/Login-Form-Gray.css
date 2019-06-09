@@ -1,6 +1,6 @@
 .login-dark {
     height: 1000px;
-    background: #475d62 url(../img/teren.jpg);
+    background: #fff;
     background-size: initial;
     position: relative;
 }
@@ -8,7 +8,7 @@
 .login-dark form {
   max-width: 320px;
   width: 90%;
-  background-color: #1e2833;
+  background-color: #BEC1C4;
   padding: 40px;
   border-radius: 4px;
   transform: translate(-50%, -50%);
@@ -37,7 +37,7 @@
 }
 
 .login-dark form .btn-primary {
-  background: #214a80;
+  background: #56c6c6;
   border: none;
   border-radius: 4px;
   padding: 11px;
@@ -48,7 +48,7 @@
 }
 
 .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
-  background: #214a80;
+  background:#1FACAC;
   outline: none;
 }
 
