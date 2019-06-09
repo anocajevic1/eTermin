@@ -66,5 +66,13 @@ namespace eTermin.Controllers {
             return View("UserMyAccount", LoginController.currentyLoggedPerson);
         }
 
+        public IActionResult Search(DateTime etDate, string etSportCentre, string etSport) {
+            return View("UserSportsCentres", LoginController.currentyLoggedPerson);
+        }
+
+        public IActionResult CreateReservation() {
+            return View("UserSportsCentres", LoginController.currentyLoggedPerson);
+        }
+
     }
 }
