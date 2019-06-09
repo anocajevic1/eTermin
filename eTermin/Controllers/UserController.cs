@@ -12,6 +12,8 @@ namespace eTermin.Controllers {
         public static DateTime selectedDate;
         public static string selectedSportCentre;
         public static string selectedSport;
+        public static string selectedSportCentre_MyReservations;
+        public static string selectedSport_myReservations;
 
         public IActionResult Index() {
             return View("Index", LoginController.currentyLoggedPerson);
@@ -79,6 +81,13 @@ namespace eTermin.Controllers {
 
         public IActionResult CreateReservation() {
             return View("UserSportsCentres", LoginController.currentyLoggedPerson);
+        }
+
+        public IActionResult SearchMyReservations(string etSportCentre, string etSport)
+        {
+            selectedSportCentre_MyReservations = etSportCentre;
+            selectedSport_myReservations = etSport;
+            return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
 
     }
