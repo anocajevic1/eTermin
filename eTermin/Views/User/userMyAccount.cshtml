@@ -47,18 +47,22 @@
         <div class="form-container">
             <div class="image-holder" style="width: 470px;height: 401px;"></div>
             @using (Html.BeginForm("MyAccountSaveEditing_onClick", "User")) {
-                <form method="post" style="height: 493px;">
-                    <h2 class="text-center"><strong>Edit</strong>&nbsp;your account here.</h2>
-                    <div class="form-group"><input class="form-control" type="text" name="etFirstName" value="@Model.FirstName" placeholder="First name" style="margin-bottom: 15px;"></div>
-                    <div class="form-group"><input class="form-control" type="text" name="etLastName" value="@Model.LastName" placeholder="Last name" style="margin-bottom: 15px;"></div>
-                    <div class="form-group"><input class="form-control" type="text" name="etUsername" value="@Model.Username" style="margin-bottom: 15px;"></div>
-                    <div class="form-group"><input class="form-control" type="email" name="etEmail" value="@Model.Email" placeholder="Email"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="etPassword" value="@Model.Password" placeholder="Password"></div>
-                    <div class="form-group"><input class="form-control" type="password" name="etConfirmPassword" value="@Model.Password" placeholder="Confirm password"></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" id="btnSave" type="submit">Save</button></div>
-                </form>
+            <form method="post" style="height: 493px;">
+                <h2 class="text-center"><strong>Edit</strong>&nbsp;your account here.</h2>
+                <div class="form-group"><input class="form-control" type="text" name="etFirstName" value="@Model.FirstName" placeholder="First name" style="margin-bottom: 15px;"></div>
+                <div class="form-group"><input class="form-control" type="text" name="etLastName" value="@Model.LastName" placeholder="Last name" style="margin-bottom: 15px;"></div>
+                <div class="form-group"><input class="form-control" type="text" name="etUsername" value="@Model.Username" placeholder="Username" style="margin-bottom: 15px;"></div>
+                <div class="form-group"><input class="form-control" type="email" name="etEmail" value="@Model.Email" placeholder="Email"></div>
+                <div class="form-group"><input class="form-control" type="password" name="etPassword" value="@Model.Password" placeholder="Password"></div>
+                <div class="form-group"><input class="form-control" type="password" name="etConfirmPassword" value="@Model.Password" placeholder="Confirm password"></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" id="btnSave" type="submit">Save</button></div>
+                @Html.ActionLink("Gift currency", "Index", "Gift", null, new { @class = "btn btn-primary btn-block"})
+
+            </form>
+       
             }
         </div>
+
     </div>
     <div class="map-clean"></div>
     <script src="~/js/jquery.min.js"></script>
