@@ -111,9 +111,10 @@
                         </thead>
                         <tbody>
                             @{
-                                List<Reservation> reservations = DatabaseContext.getInstance().MyReservations();
-                                for (int i = 0; i < reservations.Count; i++) {
-                                    Hall hall = DatabaseContext.getInstance().GetHall(reservations[i].HallID);
+                                            List<Reservation> reservations = DatabaseContext.getInstance().MyReservations();
+                                            int reservationID = -1;
+                                            for (int i = 0; i < reservations.Count; i++) {
+                                                Hall hall = DatabaseContext.getInstance().GetHall(reservations[i].HallID);
                                     <tr>
                                         <td>@reservations[i].ReservationID</td>
                                         <td>@reservations[i].DateTime.ToShortDateString()</td>
@@ -123,8 +124,9 @@
                                         <td>@DatabaseContext.getInstance().GetSportCentre(reservations[i].HallID)</td>
                                         <td>@hall.Price</td>
                                         <td>
-                                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
-                                            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                                            <button type="button" class="btn btn-danger">
+                                                @Html.ActionLink("", "DeleteReservation", "User", new { @reservations[i].ReservationID }, new { @class = "far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center" })
+                                            </button>
                                         </td>
                                     </tr>
                                 }

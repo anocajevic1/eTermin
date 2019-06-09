@@ -106,5 +106,16 @@ namespace eTermin.Controllers {
             return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
 
+        public IActionResult DeleteReservation(int reservationID)
+        {
+            Reservation r = database.Reservation.Where((Reservation reservation) => reservation.ReservationID == reservationID).First();
+            database.Reservation.Remove(r);
+            database.SaveChanges();
+            /*
+             * Treba odrediti koliko ce se refundirati
+             */
+            return View("UserMyReservations", LoginController.currentyLoggedPerson);
+        }
+
     }
 }
