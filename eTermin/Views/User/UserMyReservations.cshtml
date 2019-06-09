@@ -54,45 +54,45 @@
                 <div class="col-md-3">
                     <h2 style="width: 343px;">My reservations</h2>
                 </div>
-                     @using (Html.BeginForm("SearchMyReservations", "User")) {
-            <div class="container">
-                <div class="row">
-                        <div class="col-md-5">
-                        <div class="dropdown">
+                @using (Html.BeginForm("SearchMyReservations", "User")) {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="dropdown">
 
-                            <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSportCentre" style="border-radius: 20px; left: 70px">
-                                <option value="" disabled selected>Select a sport centre (optional)</option>
-                                <option value="">All sport centres</option>
-                                @{
-                                    List<SportCentre> sportCentres = DatabaseContext.getInstance().SportCentre.ToList();
-                                    foreach (SportCentre sc in sportCentres) {
-                                        <option value="@sc.Name">@sc.Name</option>
-                                    }
-                                }
-                            </select>
+                                    <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSportCentre" style="border-radius: 20px; left: 70px">
+                                        <option value="" disabled selected>Select a sport centre (optional)</option>
+                                        <option value="">All sport centres</option>
+                                        @{
+                                            List<SportCentre> sportCentres = DatabaseContext.getInstance().SportCentre.ToList();
+                                            foreach (SportCentre sc in sportCentres) {
+                                                <option value="@sc.Name">@sc.Name</option>
+                                            }
+                                        }
+                                    </select>
 
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="dropdown">
+                                    <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSport" style="border-radius: 100px;">
+                                        <option value="" disabled selected>Select a sport (optional)</option>
+                                        <option value="">All sports</option>
+                                        <option value="@Sport.Basketball">@Sport.Basketball</option>
+                                        <option value="@Sport.Football">@Sport.Football</option>
+                                        <option value="@Sport.Handball">@Sport.Handball</option>
+                                        <option value="@Sport.Tennis">@Sport.Tennis</option>
+                                        <option value="@Sport.Volleyball">@Sport.Volleyball</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-info" type="submit" style="border-radius: 20px;">Search</button>
+                            </div>
                         </div>
-                            </div>
-                        
-                        <div class="col-md-4">
-                            <div class="dropdown">
-                                <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSport" style="border-radius: 100px;">
-                                    <option value="" disabled selected>Select a sport (optional)</option>
-                                    <option value="">All sports</option>
-                                    <option value="@Sport.Basketball">@Sport.Basketball</option>
-                                    <option value="@Sport.Football">@Sport.Football</option>
-                                    <option value="@Sport.Handball">@Sport.Handball</option>
-                                    <option value="@Sport.Tennis">@Sport.Tennis</option>
-                                    <option value="@Sport.Volleyball">@Sport.Volleyball</option>
-                                </select>
-                            </div>
-                            </div>
-                     <div class="col-md-1">
-                            <button class="btn btn-info" type="submit" style="border-radius: 20px;">Search</button>
-                         </div>
-                        </div>
-            </div>
-        }
+                    </div>
+                }
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -118,7 +118,7 @@
                                         <td>@reservations[i].ReservationID</td>
                                         <td>@reservations[i].DateTime.ToShortDateString()</td>
                                         <td>@reservations[i].DateTime.ToShortTimeString()</td>
-                                        <td>@hall.Duration h</td>
+                                        <td>@hall.Duration m</td>
                                         <td>@hall.Sport</td>
                                         <td>@DatabaseContext.getInstance().GetSportCentre(reservations[i].HallID)</td>
                                         <td>@hall.Price</td>
