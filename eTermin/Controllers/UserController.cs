@@ -102,6 +102,9 @@ namespace eTermin.Controllers {
             user.Balance -= etPrice;
             database.Person.Update(user);
             database.SaveChanges();
+            // selectedDate = null; DateTime ne moze bit null
+            selectedSportCentre = null;
+            selectedSport = null;
 
             return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
