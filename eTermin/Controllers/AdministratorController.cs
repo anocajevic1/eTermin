@@ -16,13 +16,7 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult AdministratorSignOut_OnClick() {
-            database.Log.Add(new Log {
-                DateTime = DateTime.Now,
-                Note = "Administrator \"" + LoginController.currentyLoggedAdministrator.Username + "\" has signed out.",
-                PersonID = LoginController.currentyLoggedAdministrator.AdministratorID
-            });
             LoginController.currentyLoggedAdministrator = null;
-            database.SaveChanges();
             return View("../Login/Index");
 
         }

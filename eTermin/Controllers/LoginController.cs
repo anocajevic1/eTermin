@@ -50,12 +50,6 @@ namespace eTermin.Controllers {
                 }
             }
             currentyLoggedAdministrator = dataAdmin.First();
-            database.Log.Add(new Log {
-                DateTime = DateTime.Now,
-                Note = "Administrator \"" + currentyLoggedAdministrator.Username + "\" has signed in.",
-                PersonID = currentyLoggedAdministrator.AdministratorID
-            });
-            database.SaveChanges();
             return View("../Administrator/Index", currentyLoggedAdministrator);
         }
 
