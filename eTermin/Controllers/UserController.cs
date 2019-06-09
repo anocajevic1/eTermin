@@ -84,7 +84,10 @@ namespace eTermin.Controllers {
             return View("UserSportsCentres", LoginController.currentyLoggedPerson);
         }
 
-        public IActionResult CreateReservation(string etTime) {
+        public IActionResult CreateReservation(string etTime, int etPrice) {
+            User user = (User)LoginController.currentyLoggedPerson;
+            if (etPrice > user.Balance)
+                return View("UserSportsCentres", LoginController.currentyLoggedPerson);
             int hour = int.Parse(etTime.Substring(0, 2));
             int min = int.Parse(etTime.Substring(3, 2));
             int id = database.GetHallID(selectedSportCentre, selectedSport);
@@ -96,6 +99,10 @@ namespace eTermin.Controllers {
                 PersonID = LoginController.currentyLoggedPerson.PersonID
             });
             database.SaveChanges();
+            user.Balance -= etPrice;
+            database.Person.Update(user);
+            database.SaveChanges();
+
             return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
 
