@@ -109,11 +109,16 @@ namespace eTermin.Controllers {
         public IActionResult DeleteReservation(int reservationID)
         {
             Reservation r = database.Reservation.Where((Reservation reservation) => reservation.ReservationID == reservationID).First();
+            Hall h = database.Hall.Where((Hall hall) => hall.HallID == r.HallID).First();
+            double PRICE = h.Price;
             database.Reservation.Remove(r);
+            DateTime timeReserved = r.DateTime;
+            DateTime currentTime = DateTime.Now;
+            var hours = (timeReserved - currentTime).TotalHours;
+            if (hours > 48) ((User)LoginController.currentyLoggedPerson).Balance += PRICE;
+            if (hours < 48 && hours > 24) ((User)LoginController.currentyLoggedPerson).Balance += (PRICE / 2);
+            database.Person.Update(LoginController.currentyLoggedPerson);
             database.SaveChanges();
-            /*
-             * Treba odrediti koliko ce se refundirati
-             */
             return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
 
