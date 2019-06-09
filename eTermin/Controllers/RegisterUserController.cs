@@ -40,7 +40,7 @@ namespace eTermin.Controllers {
 
                 database.Log.Add(new Log {
                     DateTime = DateTime.Now,
-                    Note = "New user \"" + thisPerson.Username + "\" registered",
+                    Note = "New user \"" + thisPerson.Username + "\" registered.",
                     PersonID = thisPerson.PersonID
 
                 });
