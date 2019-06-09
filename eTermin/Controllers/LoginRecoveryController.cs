@@ -16,7 +16,7 @@ namespace eTermin.Controllers {
         }
         private string getCode(int length) {
             Random rnd = new Random();
-            return rnd.Next(1, (int)Math.Pow(10, length)).ToString();
+            return rnd.Next((int)Math.Pow(10, length - 1), (int) Math.Pow(10, length)).ToString();
         }
 
         private string EmailRecoveryBody(string username, string code) {
@@ -27,7 +27,7 @@ namespace eTermin.Controllers {
                     "</strong></div>" +
                     "<br/><br/>Ako niste zatražili ovaj kod, možda netko drugi pokušava pristupiti vašem računu. Ne prosljeđujte ovaj kod i ne otkrivajte ga nikome.<br/><br/>" +
                     "Lijep pozdrav,<br/>" +
-                    "Faris Poljčić";
+                    "osoblje eTermin";
         }
 
         public IActionResult SendRecoveryCode(string etEmail) {
