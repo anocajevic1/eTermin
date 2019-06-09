@@ -15,7 +15,7 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult TabSportsCentres() {
-            return View("UserSportsCentres");
+            return View("UserSportsCentres",LoginController.currentyLoggedPerson);
         }
 
         public IActionResult TabCustomReservation() {
@@ -31,7 +31,7 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult TabAbout() {
-            return View("UserAbout");
+            return View("UserAbout",LoginController.currentyLoggedPerson);
         }
 
         public IActionResult UserSignOut_OnClick() {
