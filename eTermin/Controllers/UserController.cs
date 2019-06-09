@@ -20,7 +20,7 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult TabSportsCentres() {
-            return View("UserSportsCentres",LoginController.currentyLoggedPerson);
+            return View("UserSportsCentres", LoginController.currentyLoggedPerson);
         }
 
         public IActionResult TabCustomReservation() {
@@ -36,7 +36,7 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult TabAbout() {
-            return View("UserAbout",LoginController.currentyLoggedPerson);
+            return View("UserAbout", LoginController.currentyLoggedPerson);
         }
 
         public IActionResult UserSignOut_OnClick() {
@@ -71,22 +71,31 @@ namespace eTermin.Controllers {
             return View("UserMyAccount", LoginController.currentyLoggedPerson);
         }
 
+        public IActionResult SearchMyReservations(string etSportCentre, string etSport) {
+            selectedSportCentre_MyReservations = etSportCentre;
+            selectedSport_myReservations = etSport;
+            return View("UserMyReservations", LoginController.currentyLoggedPerson);
+        }
+
         public IActionResult Search(DateTime etDate, string etSportCentre, string etSport) {
-            etDate = etDate.Date.AddHours(DateTime.Now.Hour).AddMinutes(DateTime.Now.Minute).AddSeconds(DateTime.Now.Second);
             selectedDate = etDate;
             selectedSportCentre = etSportCentre;
             selectedSport = etSport;
             return View("UserSportsCentres", LoginController.currentyLoggedPerson);
         }
 
-        public IActionResult CreateReservation() {
-            return View("UserSportsCentres", LoginController.currentyLoggedPerson);
-        }
-
-        public IActionResult SearchMyReservations(string etSportCentre, string etSport)
-        {
-            selectedSportCentre_MyReservations = etSportCentre;
-            selectedSport_myReservations = etSport;
+        public IActionResult CreateReservation(string etTime) {
+            int hour = int.Parse(etTime.Substring(0, 2));
+            int min = int.Parse(etTime.Substring(3, 2));
+            int id = database.GetHallID(selectedSportCentre, selectedSport);
+            selectedDate = selectedDate.AddHours(hour).AddMinutes(min);
+            database.Reservation.Add(new Reservation {
+                DateTimeCreated = DateTime.Now,
+                DateTime = selectedDate,
+                HallID = database.GetHallID(selectedSportCentre, selectedSport),
+                PersonID = LoginController.currentyLoggedPerson.PersonID
+            });
+            database.SaveChanges();
             return View("UserMyReservations", LoginController.currentyLoggedPerson);
         }
 
