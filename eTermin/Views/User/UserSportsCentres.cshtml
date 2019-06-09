@@ -90,6 +90,10 @@
             </div>
         }
     </div>
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("etDate")[0].setAttribute('min', today);
+    </script>
     <div class="table-borderless">
         <div class="container" style="filter: blur(0px) brightness(86%) contrast(0%);">
             <div class="intro"></div>
@@ -104,24 +108,40 @@
                         <thead>
                             <tr>
                                 <th>Time</th>
-                                <th>Sports centre</th>
                                 <th>Duration</th>
                                 <th>Price</th>
                                 <th>Book</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr>
+                            @*<tr>
                                 <td>08:00</td>
-                                <td>Vistafon</td>
                                 <td>01:15</td>
                                 <td>$50</td>
                                 <td>
                                     <button type="button" class="btn btn-info"><i class="fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
-                                    @*@Html.ActionLink("", "CreateReservation", "User", null, new { @class = "forgot" })*@
+                                    @Html.ActionLink("", "CreateReservation", "User", null, new { @class = "forgot" })
                                 </td>
-                            </tr>
+                            </tr>*@
+                            @{
+                                List<Hall> halls = DatabaseContext.getInstance().Halls();
+                                for (int i = 0; i < halls.Count; i++) {
+                                    var startTime = halls[i].StartTime;
+                                    var endTime = halls[i].EndTime;
+                                    var duration = halls[i].Duration;
+                                    while (startTime < endTime) {
+                                        <tr>
+                                            <td>@startTime.ToShortTimeString()</td>
+                                            <td>@duration m</td>
+                                            <td>@halls[i].Price</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info"><i class="fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                                            </td>
+                                        </tr>
+                                        startTime = startTime.AddMinutes(duration);
+                                    }
+                                }
+                            }
                         </tbody>
                     </table>
                 </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eTermin.Controllers;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -65,6 +66,16 @@ namespace eTermin.Models {
             var user = Person.Where((Person person) => person.Username.Equals(username)).First();
             user.Password = etPassword;
             SaveChanges();
+        }
+
+        public List<Hall> Halls() {
+            DateTime dateTime = UserController.selectedDate;
+            string sportCentre = UserController.selectedSportCentre;
+            string sport = UserController.selectedSport;
+            if (dateTime == null || sportCentre == null || sport == null)
+                return new List<Hall>();
+            List<Hall> halls = Hall.Where((Hall hall) => GetSportCentre(hall.HallID).Name.Equals(sportCentre) && hall.Sport.Equals(sport)).ToList();
+            return halls;
         }
     }
 }

@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace eTermin.Controllers {
     public class UserController : Controller {
         private DatabaseContext database = DatabaseContext.getInstance();
+        public static DateTime selectedDate;
+        public static string selectedSportCentre;
+        public static string selectedSport;
 
         public IActionResult Index() {
             return View("Index", LoginController.currentyLoggedPerson);
@@ -67,6 +70,10 @@ namespace eTermin.Controllers {
         }
 
         public IActionResult Search(DateTime etDate, string etSportCentre, string etSport) {
+            etDate = etDate.Date.AddHours(DateTime.Now.Hour).AddMinutes(DateTime.Now.Minute).AddSeconds(DateTime.Now.Second);
+            selectedDate = etDate;
+            selectedSportCentre = etSportCentre;
+            selectedSport = etSport;
             return View("UserSportsCentres", LoginController.currentyLoggedPerson);
         }
 
