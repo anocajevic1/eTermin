@@ -46,6 +46,8 @@ namespace eTermin.Controllers {
                 PersonID = LoginController.currentyLoggedPerson.PersonID
             });
             LoginController.currentyLoggedPerson = null;
+            selectedSportCentre = null;
+            selectedSport = null;
             database.SaveChanges();
             return View("../Login/Index");
         }
