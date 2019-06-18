@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>employee reservations</title>
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/Lista-Rezervacija.css">
+    <link rel="stylesheet" href="~/css/Map-Clean.css">
+    <link rel="stylesheet" href="~/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="~/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/Team-Clean.css">
+</head>
+
+<body>
+    <div></div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
+        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
+            <div class="collapse navbar-collapse"
+                id="navcol-1" style="border-radius: 20px;">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Reservations</a></li>
+                </ul><a class="text-info" href="#">Transactions</a>
+                <form class="form-inline mr-auto" target="_self">
+                    <div class="form-group"><label for="search-field"></label></div>
+                </form><a class="btn btn-light action-button" role="button" href="#">Sign out</a></div>
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Reservations</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"><input type="date" style="height: 38px;position: relative;bottom: 7px;"></div>
+                <div class="col-md-3">
+                    <div class="dropdown"><button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="border-radius: 20px;">SELECT A SPORT</button>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                    </div>
+                </div>
+                <div class="col-md-3"><button class="btn btn-info" type="button" style="border-radius: 20px;">Search</button></div>
+                <div class="col-md-3"><button class="btn btn-warning" type="button" style="border-radius: 20px;">ADD</button><button class="btn btn-danger" type="button" style="border-radius: 20px;">DELETE</button></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Time interval </th>
+                <th>Price</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>07-08</td>
+                <td>1000</td>
+                <td>Maldonado</td>
+            </tr>
+        </tbody>
+    </table></div>
+            </div>
+        </div>
+    </div>
+    <div class="map-clean"></div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
