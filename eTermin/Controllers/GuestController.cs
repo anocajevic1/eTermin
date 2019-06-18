@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eTermin.Controllers {
     public class GuestController : Controller {
+        public static DateTime selectedDate;
+        public static string selectedSportCentre;
+        public static string selectedSport;
         public IActionResult Index() {
-            return View("GuestHomeForm");
+            return View("GuestHome");
         }
         public IActionResult TabSportsCentres() {
             return View("GuestSportsCentres");
@@ -20,6 +23,13 @@ namespace eTermin.Controllers {
         }
         public IActionResult GuestSignIn_OnClick() {
             return View("../Login/Index");
+        }
+        public IActionResult Search(DateTime etDate, string etSportCentre, string etSport)
+        {
+            selectedDate = etDate;
+            selectedSportCentre = etSportCentre;
+            selectedSport = etSport;
+            return View("GuestSportsCentres");
         }
     }
 }
