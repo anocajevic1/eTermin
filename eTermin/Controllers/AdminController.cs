@@ -14,7 +14,7 @@ namespace eTermin.Controllers {
         public static string searchInput;
 
         public IActionResult Index() {
-            return View();
+            return View("Index", LoginController.currentyLoggedAdministrator);
         }
 
         public IActionResult AdminSignOut_OnClick() {

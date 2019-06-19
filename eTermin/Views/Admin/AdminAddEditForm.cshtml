@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -70,7 +70,9 @@
                     <li class="list-group-item"><span>Price</span><input class="form-control" type="number" placeholder="Amount"></li>
                 </ul>
             </div>
-            <div class="form-group"><button class="btn btn-primary" type="submit">Save</button></div>
+            <div class="form-group">
+                @Html.ActionLink("Save", "TabSportsCentres", "Admin", null, new { @class = "btn btn-primary" })
+            </div>
         </form>
     </div>
     <script src="~/js/jquery.min.js"></script>
