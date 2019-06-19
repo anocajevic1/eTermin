@@ -245,6 +245,9 @@ namespace eTermin.Models {
             List<User> users = Person.Where((Person p) => p is User).OfType<User>().ToList();
             if (AdminController.selectedFilter != null && AdminController.searchInput != null) {
                 switch (AdminController.selectedFilter) {
+                    case "All users":
+                        users = Person.OfType<User>().ToList();
+                        return users;
                     case "First Name":
                         users = Person.Where((Person p) => p.FirstName.Equals(AdminController.searchInput)).OfType<User>().ToList();
                         return users;
