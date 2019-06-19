@@ -53,6 +53,7 @@
 
                                     <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSearchFilter" style="border-radius: 20px; left: 70px">
                                         <option value="" disabled selected>Select a search filter</option>
+                                        <option value="All users">All users</option>
                                         <option value="First Name">First Name</option>
                                         <option value="Last Name">Last Name</option>
                                         <option value="Email">Email</option>
@@ -96,12 +97,12 @@
                                         <td>@users[i].Username</td>
                                         <td>
                                             <button type="button" class="btn btn-danger">
-                                                <i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
+                                                @Html.ActionLink("", "DeleteUser", "Admin", new { ((Person)users[i]).PersonID }, new { @class = "far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center" })
                                             </button>
                                             <button type="button" class="btn btn-warning">
                                                 <i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i>
-                                                </button>
-                                    </td>
+                                            </button>
+                                        </td>
                                     </tr>
                                 }
                             }

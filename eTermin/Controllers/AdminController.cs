@@ -65,5 +65,19 @@ namespace eTermin.Controllers {
 
             return View("AdminUsersForm", LoginController.currentyLoggedAdministrator);
         }
+
+        public IActionResult DeleteUser(int personID)
+        {
+            Person p = database.Person.Where((Person person) => person.PersonID == personID).First();
+            var logs = database.Log.Where((Log log) => log.PersonID == personID).ToList();
+            for (int i = 0; i < logs.Count; i++)
+            {
+                database.Log.Remove(logs[i]);
+                database.SaveChanges();
+            }
+            database.Person.Remove(p);
+            database.SaveChanges();
+            return View("AdminUsersForm", LoginController.currentyLoggedAdministrator);
+        }
     }
 }
