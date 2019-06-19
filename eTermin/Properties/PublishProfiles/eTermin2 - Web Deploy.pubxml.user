@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYgJypg93Z0W/RQmIDIJrsQAAAAACAAAAAAAQZgAAAAEAACAAAACLqsYybxchhJxYs0qOmlL/DaIRjsJ756ElBrUy6nntzQAAAAAOgAAAAAIAACAAAABxQWwfvUzuGdxKms4S/WhPSMuuZ8UHBmU6dM85LHp56IAAAADJBimif6EhfQUo0bM4Gk7AfOXuWR1wobHrKi9OKATYxuUrLFAwtaw647Ei1w3litJ97/teotk9I/HKwDRw19TaBLverG+JDSO1PD2udjSoD5oRqyFRVsX5+QTc+Qnd5/ONCUSICuNJatjkoXrqKNS7XjD4vxBVF6vi7ENj4XNWi0AAAADlI5YlAWMdeMjBRo/CF1G20SRoYcD3zK/GnLds4v+S7icGAvNAbiVVhbC9KOXHwz1AnbJVOXFY+hyNU/AIs0i3</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AzureConnection">
+      <Value>Server=tcp:ooad2019.database.windows.net,1433%3bInitial Catalog=MVC%3bPersist Security Info=False%3bUser ID=adminaga%3bPassword=Odjedando9%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="eTermin.Models.DatabaseContext">
+      <Value>Server=tcp:ooad2019.database.windows.net,1433%3bInitial Catalog=MVC%3bPersist Security Info=False%3bUser ID=adminaga%3bPassword=Odjedando9%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
