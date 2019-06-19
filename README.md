@@ -4,6 +4,9 @@
 
 ![Logo](https://github.com/ooad-2018-2019/Grupa4-FFA/blob/master/eTermin/wwwroot/img/mhsc-logo.png)
 
+### Azure deployment
+https://etermin.azurewebsites.net
+
 ### Članovi tima
 
 * Poljčić Faris
