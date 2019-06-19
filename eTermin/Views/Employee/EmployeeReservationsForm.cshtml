@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,22 +12,29 @@
     <link rel="stylesheet" href="~/css/Navigation-with-Search.css">
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/css/Team-Clean.css">
+    <link href="~/fonts/fontawesome-all.min.css" rel="stylesheet" />
 </head>
 
 <body>
     <div></div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
+        <div class="container">
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
             <div class="collapse navbar-collapse"
-                id="navcol-1" style="border-radius: 20px;">
+                 id="navcol-1" style="border-radius: 20px;">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Reservations</a></li>
-                </ul><a class="text-info" href="#">Transactions</a>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+                @Html.ActionLink("Home", "Index", "Employee", null, new { @class = "text-secondary", d = "linkHome", style = "margin-right: 20px;" })
+                @Html.ActionLink("Reservations", "TabReservations", "Employee", null, new { @class = "text-secondary", d = "linkSportsCentres", style = "margin-right: 20px;" })
+                @Html.ActionLink("Transactions", "TabTransactions", "Employee", null, new { @class = "text-secondary", d = "linkCustomReservation", style = "margin-right: 20px;" })
                 <form class="form-inline mr-auto" target="_self">
                     <div class="form-group"><label for="search-field"></label></div>
-                </form><a class="btn btn-light action-button" role="button" href="#">Sign out</a></div>
+                </form>
+                @Html.ActionLink("Sign out", "EmployeeSignOut_OnClick", "Employee", null, new { @class = "btn btn-light action-button", style = "margin-right: 10px;border-radius: 20px;border-color: #7BDC97;", type = "button" })
+            </div>
         </div>
     </nav>
     <div>
@@ -40,39 +47,85 @@
         </div>
     </div>
     <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3"><input type="date" style="height: 38px;position: relative;bottom: 7px;"></div>
-                <div class="col-md-3">
-                    <div class="dropdown"><button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="border-radius: 20px;">SELECT A SPORT</button>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+        @using (Html.BeginForm("Filter", "Employee")) {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"><input type="date" name="etDate" style="height: 38px;"></div>
+                    <div class="col-md-3">
+                        <div class="dropdown">
+                            <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSport" style="border-radius: 20px;">
+                                <option value="" disabled selected>Select a sport</option>
+                                <option value="@Sport.Football">@Sport.Football</option>
+                                <option value="@Sport.Basketball">@Sport.Basketball</option>
+                                <option value="@Sport.Handball">@Sport.Handball</option>
+                                <option value="@Sport.Tennis">@Sport.Tennis</option>
+                                <option value="@Sport.Volleyball">@Sport.Volleyball</option>
+                            </select>
+                        </div>
                     </div>
+                    <div class="col-md-3"><button class="btn btn-info" type="submit" style="border-radius: 20px;">Search</button></div>
                 </div>
-                <div class="col-md-3"><button class="btn btn-info" type="button" style="border-radius: 20px;">Search</button></div>
-                <div class="col-md-3"><button class="btn btn-warning" type="button" style="border-radius: 20px;">ADD</button><button class="btn btn-danger" type="button" style="border-radius: 20px;">DELETE</button></div>
             </div>
-        </div>
+        }
     </div>
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("etDate")[0].setAttribute('min', today);
+    </script>
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12"><table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Time interval </th>
-                <th>Price</th>
-                <th>Username</th>
-            </tr>
-        </thead>
-        <tbody>
-           
-            <tr>
-                <td>07-08</td>
-                <td>1000</td>
-                <td>Maldonado</td>
-            </tr>
-        </tbody>
-    </table></div>
+                <div class="col-md-12">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Duration</th>
+                                <th>Price</th>
+                                <th>Book</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                List<Hall> halls = DatabaseContext.getInstance().Halls(eTermin.Controllers.EmployeeController.selectedDate, eTermin.Controllers.EmployeeController.selectedSportCentre, eTermin.Controllers.EmployeeController.selectedSport);
+                                List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls, true);
+                                string etTime = "";
+                                int etPrice;
+                                for (int i = 0; i < halls.Count; i++) {
+                                    var startTime = halls[i].StartTime;
+                                    var endTime = halls[i].EndTime;
+                                    var duration = halls[i].Duration;
+                                    while (startTime < endTime) {
+                                        if (!reservedTimes.Contains(startTime.ToShortTimeString()) && (eTermin.Controllers.EmployeeController.selectedDate.Date > DateTime.Now.Date || DateTime.Now.TimeOfDay < startTime.TimeOfDay)) {
+                                            <tr>
+                                                <td>@startTime.ToShortTimeString()</td>
+                                                <td>@duration m</td>
+                                                <td>@halls[i].Price</td>
+                                                <td>
+                                                    <button class="btn btn-info">
+                                                        @Html.ActionLink("", "CreateReservation", "Employee", new { etTime = @startTime.ToShortTimeString(), etPrice = @halls[i].Price }, new { @class = "text-white fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center" })
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        } else {
+                                            <tr>
+                                                <td>@startTime.ToShortTimeString()</td>
+                                                <td>@duration m</td>
+                                                <td>@halls[i].Price</td>
+                                                <td>
+                                                    <button class="btn btn-info">
+                                                        @Html.ActionLink("", "RemoveReservation", "Employee", new { etTime = @startTime.ToShortTimeString(), etPrice = @halls[i].Price }, new { @class = "text-danger fas fa-minus d-xl-flex justify-content-xl-center align-items-xl-center" })
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                        startTime = startTime.AddMinutes(duration);
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

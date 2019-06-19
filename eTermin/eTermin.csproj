@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Employee\Index.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="gmaps-api-net" Version="0.32.0" />
@@ -20,5 +24,9 @@
 
   <ItemGroup>
     <Folder Include="Views\Gift\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Employee\Index.cshtml" />
   </ItemGroup>
 </Project>

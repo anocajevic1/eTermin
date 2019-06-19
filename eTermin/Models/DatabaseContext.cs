@@ -47,6 +47,18 @@ namespace eTermin.Models {
             return reservations;
         }
 
+        public List<Transaction> Transactions(Person person, DateTime dateTime) {
+            List<Transaction> transactions = Transaction.Where((Transaction transaction) => transaction.EmployeeID.Equals(person.PersonID) && transaction.Time.Date.Equals(dateTime.Date)).ToList();
+            transactions.Sort((Transaction a, Transaction b) => DateTime.Compare(b.Time, a.Time));
+            return transactions;
+        }
+
+        public List<Transaction> Transactions(Person person) {
+            List<Transaction> transactions = Transaction.Where((Transaction transaction) => transaction.EmployeeID.Equals(person.PersonID)).ToList();
+            transactions.Sort((Transaction a, Transaction b) => DateTime.Compare(b.Time, a.Time));
+            return transactions;
+        }
+
         public SportCentre GetSportCentre(int hallID) {
             return SportCentre.Where((SportCentre sportCentre) => GetHall(hallID).SportCentreID.Equals(sportCentre.SportCentreID)).First();
         }
@@ -67,6 +79,11 @@ namespace eTermin.Models {
             var user = Person.Where((Person person) => person.Username.Equals(username)).First();
             user.Password = etPassword;
             SaveChanges();
+        }
+
+        public Reservation FindReservation(string etTime, DateTime selectedDate, int selectedSportCentre, string selectedSport) {
+            int hallID = GetHallID(selectedSportCentre, selectedSport);
+            return Reservation.Where((Reservation res) => res.DateTime.Date.Equals(selectedDate.Date) && etTime.Equals(res.DateTime.ToShortTimeString()) && res.HallID.Equals(hallID)).First();
         }
 
         public List<Reservation> MyReservations() {
@@ -110,6 +127,23 @@ namespace eTermin.Models {
             return reservations;
         }
 
+        public List<Transaction> MyTransactions(string filter) {
+            List<Transaction> transactions = Transactions(LoginController.currentyLoggedPerson, DateTime.Now);
+            if (filter != null) {
+                transactions.RemoveAll((Transaction tr) => {
+                    User user = GetUser(tr.UserID);
+                    return !user.FirstName.ToLower().Contains(filter.ToLower()) && !user.LastName.ToLower().Contains(filter.ToLower());
+                });
+            }
+            EmployeeController.filter = null;
+            return transactions;
+        }
+
+        public List<Transaction> AllTransactions() {
+            List<Transaction> transactions = Transactions(LoginController.currentyLoggedPerson);
+            return transactions;
+        }
+
         private int GetSportCentreId(string sportCentre) {
             return SportCentre.Where((SportCentre sportCentr) => sportCentr.Name.Equals(sportCentre)).First().SportCentreID;
         }
@@ -122,9 +156,20 @@ namespace eTermin.Models {
             return halls;
         }
 
-        public List<string> ReservedTimes(List<Hall> halls) {
+        public List<Hall> Halls(DateTime dateTime, int sportCentreID, string sport) {
+            if (dateTime == null || sport == null)
+                return new List<Hall>();
+            List<Hall> halls = Hall.Where((Hall hall) => sportCentreID.Equals(hall.SportCentreID) && hall.Sport.ToString().Equals(sport)).ToList();
+            return halls;
+        }
+
+        public List<string> ReservedTimes(List<Hall> halls, bool employee) {
             List<string> reservedTimes = new List<string>();
-            DateTime dateTime = UserController.selectedDate;
+            DateTime dateTime;
+            if (employee)
+                dateTime = EmployeeController.selectedDate;
+            else
+                dateTime = UserController.selectedDate;
             foreach (Hall hall in halls) {
                 List<Reservation> reservations = Reservation.Where((Reservation reservation) => reservation.HallID.Equals(hall.HallID) && reservation.DateTime.Date == dateTime.Date).ToList();
                 foreach (Reservation reservation in reservations) {
@@ -137,6 +182,14 @@ namespace eTermin.Models {
         public int GetHallID(string sportCentre, string sport) {
             int sportCentreID = GetSportCentreId(sportCentre);
             return Hall.Where((Hall hall) => sportCentreID.Equals(hall.SportCentreID) && hall.Sport.ToString().Equals(sport)).First().HallID;
+        }
+
+        public int GetHallID(int sportCentreID, string sport) {
+            return Hall.Where((Hall hall) => sportCentreID.Equals(hall.SportCentreID) && hall.Sport.ToString().Equals(sport)).First().HallID;
+        }
+
+        public User GetUser(int userID) {
+            return (User)Person.Where((Person person) => person.PersonID.Equals(userID)).First();
         }
     }
 }

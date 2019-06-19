@@ -114,7 +114,7 @@
                         <tbody>
                             @{
                                 List<Hall> halls = DatabaseContext.getInstance().Halls(eTermin.Controllers.UserController.selectedDate, eTermin.Controllers.UserController.selectedSportCentre, eTermin.Controllers.UserController.selectedSport);
-                                List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls);
+                                List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls, false);
                                 string etTime = "";
                                 int etPrice;
                                 for (int i = 0; i < halls.Count; i++) {
@@ -129,7 +129,7 @@
                                                 <td>@halls[i].Price</td>
                                                 <td>
                                                     <button class="btn btn-info">
-                                                        @Html.ActionLink("", "CreateReservation", "User", new { etTime = @startTime.ToShortTimeString(), etPrice = @halls[i].Price }, new { @class = "fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center" })
+                                                        @Html.ActionLink("", "CreateReservation", "User", new { etTime = @startTime.ToShortTimeString(), etPrice = @halls[i].Price }, new { @class = "text-white fas fa-plus d-xl-flex justify-content-xl-center align-items-xl-center" })
                                                     </button>
                                                 </td>
                                             </tr>

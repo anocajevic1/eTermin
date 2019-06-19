@@ -79,8 +79,8 @@
                                     <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" name="etSport" style="border-radius: 100px;">
                                         <option value="" disabled selected>Select a sport (optional)</option>
                                         <option value="">All sports</option>
-                                        <option value="@Sport.Basketball">@Sport.Basketball</option>
                                         <option value="@Sport.Football">@Sport.Football</option>
+                                        <option value="@Sport.Basketball">@Sport.Basketball</option>
                                         <option value="@Sport.Handball">@Sport.Handball</option>
                                         <option value="@Sport.Tennis">@Sport.Tennis</option>
                                         <option value="@Sport.Volleyball">@Sport.Volleyball</option>
@@ -111,10 +111,10 @@
                         </thead>
                         <tbody>
                             @{
-                                            List<Reservation> reservations = DatabaseContext.getInstance().MyReservations();
-                                            int reservationID = -1;
-                                            for (int i = 0; i < reservations.Count; i++) {
-                                                Hall hall = DatabaseContext.getInstance().GetHall(reservations[i].HallID);
+                                List<Reservation> reservations = DatabaseContext.getInstance().MyReservations();
+                                int reservationID = -1;
+                                for (int i = 0; i < reservations.Count; i++) {
+                                    Hall hall = DatabaseContext.getInstance().GetHall(reservations[i].HallID);
                                     <tr>
                                         <td>@reservations[i].ReservationID</td>
                                         <td>@reservations[i].DateTime.ToShortDateString()</td>

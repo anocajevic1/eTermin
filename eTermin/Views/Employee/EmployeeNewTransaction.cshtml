@@ -11,22 +11,18 @@
 </head>
 <body>
     <div class="login-gray">
-        @using (Html.BeginForm("GiftCurrency", "Gift"))
-        {
-        <form method="post" >
-            <h2 class="sr-only">Gift Form</h2><img class="img-fluid" src="~/img/mhsc-logo.png">
-            <div class="illustration"></div>
-            <div class="form-group"><input class="form-control" type="text" name="etUsername" placeholder="Enter username" autocomplete="on"></div>
-            <div class="form-group"><input class="form-control" type="number" min="0"  name="etCurrency" placeholder="Enter currency"></div>
-            <div class="row">
-
-                    <button class="btn btn-primary btn-lg btn-block" id="btnSignIn" type="submit" style="background: #56c6c6;">Gift</button>
-                    @Html.ActionLink("Cancel", "Cancel_onClick", "Gift", null, new { @class = "btn btn-primary btn-lg btn-block", style = "background: #56c6c6;", type = "submit" })
-
-
+        @using (Html.BeginForm("MakeTransaction", "Employee")) {
+            <form method="post">
+                <h2 class="sr-only">Gift Form</h2><img class="img-fluid" src="~/img/mhsc-logo.png">
+                <div class="illustration"></div>
+                <div class="form-group"><input class="form-control" type="text" name="etUsername" placeholder="Enter username" autocomplete="on"></div>
+                <div class="form-group"><input class="form-control" type="number" min="0" name="etCurrency" placeholder="Enter currency"></div>
+                <div class="row">
+                    <button class="btn btn-primary btn-lg btn-block" id="btnSignIn" type="submit" style="background: #56c6c6;">Make a transaction</button>
+                    @Html.ActionLink("Cancel", "Cancel_onClick", "Employee", null, new { @class = "btn btn-primary btn-lg btn-block", style = "background: #56c6c6;", type = "submit" })
                 </div>
 
-</form>
+            </form>
         }
     </div>
     <script src="~/js/jquery.min.js"></script>
