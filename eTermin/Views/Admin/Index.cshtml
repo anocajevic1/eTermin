@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -20,17 +20,24 @@
 <body>
     <div></div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
+        <div class="container">
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="~/img/mhsc-logo.png" width="150">
             <div class="collapse navbar-collapse"
-                id="navcol-1" style="border-radius: 20px;">
+                 id="navcol-1" style="border-radius: 20px;">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Sports centres</a></li>
-                </ul><a class="text-secondary" href="#" style="text-decoration: none;">Users</a><a class="text-info" href="#" style="margin-left: 20px;text-decoration: none;">Transactions history</a>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+                @Html.ActionLink("Home", "Index", "Admin", null, new { @class = "text-secondary", d = "linkHome", style = "margin-right: 20px;" })
+                @Html.ActionLink("Sports centres", "TabSportsCentres", "Admin", null, new { @class = "text-secondary", d = "linkSportsCentres", style = "margin-right: 20px;" })
+                @Html.ActionLink("Users", "TabUsers", "Admin", null, new { @class = "text-secondary", d = "linkCustomReservation", style = "margin-right: 20px;" })
+                @Html.ActionLink("Transactions history", "TabTransactionsHistory", "Admin", null, new { @class = "text-secondary", d = "linkCustomReservation", style = "margin-right: 20px;" })
                 <form class="form-inline mr-auto" target="_self">
                     <div class="form-group"><label for="search-field"></label></div>
-                </form><a class="btn btn-light action-button" role="button" href="#">Sign out</a></div>
+                </form>
+                @Html.ActionLink("Sign out", "AdminSignOut_OnClick", "Admin", null, new { @class = "btn btn-light action-button", style = "margin-right: 10px;border-radius: 20px;border-color: #7BDC97;", type = "button" })
+            </div>
         </div>
     </nav>
     <div class="map-clean">

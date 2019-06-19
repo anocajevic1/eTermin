@@ -50,7 +50,7 @@ namespace eTermin.Controllers {
                 }
             }
             currentyLoggedAdministrator = dataAdmin.First();
-            return View("../Administrator/Index", currentyLoggedAdministrator);
+            return View("../Admin/Index", currentyLoggedAdministrator);
         }
 
     }
