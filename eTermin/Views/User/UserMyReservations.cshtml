@@ -112,7 +112,6 @@
                         <tbody>
                             @{
                                 List<Reservation> reservations = DatabaseContext.getInstance().MyReservations();
-                                int reservationID = -1;
                                 for (int i = 0; i < reservations.Count; i++) {
                                     Hall hall = DatabaseContext.getInstance().GetHall(reservations[i].HallID);
                                     <tr>

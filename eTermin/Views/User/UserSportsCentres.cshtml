@@ -115,8 +115,6 @@
                             @{
                                 List<Hall> halls = DatabaseContext.getInstance().Halls(eTermin.Controllers.UserController.selectedDate, eTermin.Controllers.UserController.selectedSportCentre, eTermin.Controllers.UserController.selectedSport);
                                 List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls, false);
-                                string etTime = "";
-                                int etPrice;
                                 for (int i = 0; i < halls.Count; i++) {
                                     var startTime = halls[i].StartTime;
                                     var endTime = halls[i].EndTime;
