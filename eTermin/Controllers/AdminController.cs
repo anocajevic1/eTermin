@@ -8,7 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace eTermin.Controllers {
+
+  
+
     public class AdminController : Controller {
+
+        public static string selectedFilter;
+        public static string searchInput;
         private DatabaseContext database = DatabaseContext.getInstance();
 
         public IActionResult Index() {
@@ -30,6 +36,14 @@ namespace eTermin.Controllers {
 
         public IActionResult TabTransactionsHistory() {
             return View("AdminTransactionsForm", LoginController.currentyLoggedPerson);
+        }
+
+        public IActionResult SearchUsers(string etSearchFilter, string searchField)
+        {
+            selectedFilter = etSearchFilter;
+            searchInput = searchField;
+
+            return View("AdminUsersForm", LoginController.currentyLoggedAdministrator);
         }
     }
 }

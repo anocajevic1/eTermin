@@ -163,6 +163,32 @@ namespace eTermin.Models {
             return halls;
         }
 
+        public List<User> searchedUsers()
+        {
+            List<User> users = new List<User>();
+            if ( AdminController.selectedFilter != null && AdminController.searchInput != null )
+            {
+              
+                switch(AdminController.selectedFilter)
+                {
+                    case "First Name":
+                        users = Person.Where((Person p) => p.FirstName.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Last Name":
+                        users = Person.Where((Person p) => p.LastName.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Email":
+                        users = Person.Where((Person p) => p.Email.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Username":
+                        users = Person.Where((Person p) => p.Username.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+
+                }
+            }
+            return users;
+        }
+
         public List<string> ReservedTimes(List<Hall> halls, bool employee) {
             List<string> reservedTimes = new List<string>();
             DateTime dateTime;
