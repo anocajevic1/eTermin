@@ -47,10 +47,30 @@ namespace eTermin.Models {
             return reservations;
         }
 
+        public List<Reservation> Reservations(DateTime dateTime) {
+            List<Reservation> reservations = Reservation.Where((Reservation reservation) => reservation.DateTime.Date.Equals(dateTime.Date)).ToList();
+            reservations.Sort((Reservation a, Reservation b) => DateTime.Compare(b.DateTime, a.DateTime));
+            return reservations;
+        }
+
         public List<Transaction> Transactions(Person person, DateTime dateTime) {
             List<Transaction> transactions = Transaction.Where((Transaction transaction) => transaction.EmployeeID.Equals(person.PersonID) && transaction.Time.Date.Equals(dateTime.Date)).ToList();
             transactions.Sort((Transaction a, Transaction b) => DateTime.Compare(b.Time, a.Time));
             return transactions;
+        }
+
+        public List<SportCentre> SportCentres(string filter) {
+            List<SportCentre> sportCentres = SportCentre.ToList();
+            if (filter != null) {
+                sportCentres.RemoveAll((SportCentre sc) => {
+                    return !sc.Name.ToLower().Contains(sc.Name.ToLower());
+                });
+            }
+            return sportCentres;
+        }
+
+        public Employee Employee(int sportCentreID) {
+            return (Employee)Person.Where((Person person) => person is Employee && ((Employee)person).SportCentreID == sportCentreID).First();
         }
 
         public List<Transaction> Transactions(Person person) {
@@ -61,6 +81,10 @@ namespace eTermin.Models {
 
         public SportCentre GetSportCentre(int hallID) {
             return SportCentre.Where((SportCentre sportCentre) => GetHall(hallID).SportCentreID.Equals(sportCentre.SportCentreID)).First();
+        }
+
+        public SportCentre GetSportCentreByID(int sportCentreID) {
+            return SportCentre.Where((SportCentre sportCentre) => sportCentreID == sportCentre.SportCentreID).First();
         }
 
         public Hall GetHall(int hallID) {
@@ -84,6 +108,10 @@ namespace eTermin.Models {
         public Reservation FindReservation(string etTime, DateTime selectedDate, int selectedSportCentre, string selectedSport) {
             int hallID = GetHallID(selectedSportCentre, selectedSport);
             return Reservation.Where((Reservation res) => res.DateTime.Date.Equals(selectedDate.Date) && etTime.Equals(res.DateTime.ToShortTimeString()) && res.HallID.Equals(hallID)).First();
+        }
+
+        public SportCentre FindSportCentre(string etName, string etAddress) {
+            return SportCentre.Where((SportCentre sc) => sc.Name.Equals(etName) && sc.Address.Equals(etAddress)).First();
         }
 
         public List<Reservation> MyReservations() {
@@ -139,10 +167,23 @@ namespace eTermin.Models {
             return transactions;
         }
 
+        public List<Reservation> AllReservations(string filter) {
+            List<Reservation> reservations = Reservations(DateTime.Now);
+            if (filter != null) {
+                reservations.RemoveAll((Reservation res) => {
+                    return !GetSportCentre(res.HallID).Name.ToLower().Contains(filter.ToLower());
+                });
+            }
+            AdminController.filter = null;
+            return reservations;
+        }
+
         public List<Transaction> AllTransactions() {
             List<Transaction> transactions = Transactions(LoginController.currentyLoggedPerson);
             return transactions;
         }
+
+
 
         private int GetSportCentreId(string sportCentre) {
             return SportCentre.Where((SportCentre sportCentr) => sportCentr.Name.Equals(sportCentre)).First().SportCentreID;
@@ -161,32 +202,6 @@ namespace eTermin.Models {
                 return new List<Hall>();
             List<Hall> halls = Hall.Where((Hall hall) => sportCentreID.Equals(hall.SportCentreID) && hall.Sport.ToString().Equals(sport)).ToList();
             return halls;
-        }
-
-        public List<User> searchedUsers()
-        {
-            List<User> users = new List<User>();
-            if ( AdminController.selectedFilter != null && AdminController.searchInput != null )
-            {
-              
-                switch(AdminController.selectedFilter)
-                {
-                    case "First Name":
-                        users = Person.Where((Person p) => p.FirstName.Equals(AdminController.searchInput)).OfType<User>().ToList();
-                        return users;
-                    case "Last Name":
-                        users = Person.Where((Person p) => p.LastName.Equals(AdminController.searchInput)).OfType<User>().ToList();
-                        return users;
-                    case "Email":
-                        users = Person.Where((Person p) => p.Email.Equals(AdminController.searchInput)).OfType<User>().ToList();
-                        return users;
-                    case "Username":
-                        users = Person.Where((Person p) => p.Username.Equals(AdminController.searchInput)).OfType<User>().ToList();
-                        return users;
-
-                }
-            }
-            return users;
         }
 
         public List<string> ReservedTimes(List<Hall> halls, bool employee) {
@@ -216,6 +231,37 @@ namespace eTermin.Models {
 
         public User GetUser(int userID) {
             return (User)Person.Where((Person person) => person.PersonID.Equals(userID)).First();
+        }
+
+        public Person GetPerson(int personID) {
+            return Person.Where((Person person) => person.PersonID.Equals(personID)).First();
+        }
+
+        public Employee GetEmployee(int userID) {
+            return (Employee)Person.Where((Person person) => person.PersonID.Equals(userID)).First();
+        }
+
+        public List<User> searchedUsers() {
+            List<User> users = Person.Where((Person p) => p is User).OfType<User>().ToList();
+            if (AdminController.selectedFilter != null && AdminController.searchInput != null) {
+                switch (AdminController.selectedFilter) {
+                    case "First Name":
+                        users = Person.Where((Person p) => p.FirstName.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Last Name":
+                        users = Person.Where((Person p) => p.LastName.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Email":
+                        users = Person.Where((Person p) => p.Email.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                    case "Username":
+                        users = Person.Where((Person p) => p.Username.Equals(AdminController.searchInput)).OfType<User>().ToList();
+                        return users;
+                }
+                AdminController.selectedFilter = null;
+                AdminController.searchInput = null;
+            }
+            return users;
         }
     }
 }

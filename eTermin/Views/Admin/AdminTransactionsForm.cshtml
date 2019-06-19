@@ -49,44 +49,39 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6"><input type="search" placeholder="Search"></div>
-                <div class="col-md-6">
-                    <div class="dropdown"><button class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="border-radius: 20px;position: relative;top: 10px;">filter by</button>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                    </div>
+                <div class="col-md-12">
+                    <table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Location</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                List<Transaction> transactions = DatabaseContext.getInstance().Transaction.ToList();
+                                transactions.Sort((Transaction a, Transaction b) => DateTime.Compare(b.Time, a.Time));
+                                for (int i = 0; i < transactions.Count; i++) {
+                                    Transaction transaction = transactions[i];
+                                    <tr>
+                                        <td>@transaction.TransactionID</td>
+                                        <td>@transaction.Time.ToShortDateString()</td>
+                                        <td>@transaction.Time.ToShortTimeString()</td>
+                                        <td>@DatabaseContext.getInstance().GetSportCentreByID(transaction.SportCentreID).Address</td>
+                                        <td>@DatabaseContext.getInstance().GetEmployee(transaction.EmployeeID).Username</td>
+                                        <td>@DatabaseContext.getInstance().GetUser(transaction.UserID).Username</td>
+                                        <td>@transaction.Amount</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div></div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12"><table id="example" class="table table-bordered table-hover" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Time interval </th>
-                <th>From</th>
-                <th>To</th>
-            </tr>
-        </thead>
-        <tbody>
-           
-            <tr>
-                <td>12344</td>
-                <td>Narnia</td>
-                <td>18.06.2019.</td>
-                <td>1000</td>
-                <td>07-08</td>
-                <td>Me</td>
-                <td>You</td>
-            </tr>
-        </tbody>
-    </table></div>
             </div>
         </div>
     </div>
