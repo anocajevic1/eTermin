@@ -105,7 +105,8 @@
                         <tbody>
                             @{
                                 List<Hall> halls = DatabaseContext.getInstance().Halls(eTermin.Controllers.GuestController.selectedDate, eTermin.Controllers.GuestController.selectedSportCentre, eTermin.Controllers.GuestController.selectedSport);
-                                List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls,false);
+                                eTermin.Controllers.GuestController.selectedSport = null;
+                                List<string> reservedTimes = DatabaseContext.getInstance().ReservedTimes(halls, false);
                                 for (int i = 0; i < halls.Count; i++)
                                 {
                                     var startTime = halls[i].StartTime;
@@ -115,15 +116,15 @@
                                     {
                                         if (!reservedTimes.Contains(startTime.ToShortTimeString()) && (eTermin.Controllers.GuestController.selectedDate.Date > DateTime.Now.Date || DateTime.Now.TimeOfDay < startTime.TimeOfDay))
                                         {
-                                            <tr>
-                                                <td>@startTime.ToShortTimeString()</td>
-                                                <td>@duration m</td>
-                                                <td>@halls[i].Price</td>
-                                            </tr>
-                                        }
-                                        startTime = startTime.AddMinutes(duration);
-                                    }
-                                }
+                        <tr>
+                            <td>@startTime.ToShortTimeString()</td>
+                            <td>@duration m</td>
+                            <td>@halls[i].Price</td>
+                        </tr>
+}
+startTime = startTime.AddMinutes(duration);
+}
+}
                             }
                         </tbody>
                     </table>
